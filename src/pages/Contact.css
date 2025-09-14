@@ -1,0 +1,1209 @@
+@import '../styles/variables.css';
+
+/* ===============================
+   ENHANCED CONTACT STYLES
+   =============================== */
+
+.contacthub-main-section {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) * 2) 0 0 0;
+  background: #0f0f23;
+  font-family: 'Poppins', 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+/* Background */
+.contacthub-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.contacthub-gradient-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.10) 0%, transparent 50%),
+    linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
+  animation: contacthub-bg-shift 18s ease-in-out infinite;
+}
+
+@keyframes contacthub-bg-shift {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  33% { filter: hue-rotate(30deg) brightness(1.1); }
+  66% { filter: hue-rotate(-30deg) brightness(0.9); }
+}
+
+.contacthub-decoration-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.contacthub-shape {
+  position: absolute;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: contacthub-shape-movement 12s linear infinite;
+}
+
+.contacthub-shape-1 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.contacthub-shape-2 {
+  width: 80px;
+  height: 80px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  top: 20%;
+  right: 10%;
+  animation-delay: 2.4s;
+}
+
+.contacthub-shape-3 {
+  width: 120px;
+  height: 60px;
+  border-radius: 30px;
+  bottom: 20%;
+  left: 8%;
+  animation-delay: 4.8s;
+}
+
+.contacthub-shape-4 {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 7.2s;
+}
+
+.contacthub-shape-5 {
+  width: 90px;
+  height: 90px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  bottom: 30%;
+  right: 25%;
+  animation-delay: 9.6s;
+}
+
+@keyframes contacthub-shape-movement {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+.contacthub-content-wrapper {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg) calc(var(--spacing-xl) * 2) var(--spacing-lg);
+  width: 100%;
+}
+
+/* ===============================
+   HEADER SECTION
+   =============================== */
+
+.contacthub-header-area {
+  text-align: center;
+  margin-bottom: calc(var(--spacing-xl) * 2);
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 1.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contacthub-section-loaded .contacthub-header-area {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.contacthub-main-title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+  letter-spacing: -0.01em;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   CONTACT TILES (Previous styles remain the same)
+   =============================== */
+
+.contacthub-tiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: calc(var(--spacing-xl) * 2);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contacthub-compact-tile {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(40px) scale(0.95);
+  opacity: 0;
+  transition-delay: var(--tile-delay);
+  backdrop-filter: blur(15px);
+  height: 130px;
+  display: block;
+}
+
+.contacthub-section-loaded .contacthub-compact-tile {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.contacthub-compact-tile:hover,
+.contacthub-tile-selected {
+  transform: translateY(-10px) scale(1.03);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--tile-color);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 30px var(--tile-color);
+}
+
+.contacthub-tile-content {
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: relative;
+  z-index: 2;
+}
+
+.contacthub-compact-icon {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--tile-color), rgba(255, 255, 255, 0.1));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contacthub-compact-tile:hover .contacthub-compact-icon,
+.contacthub-tile-selected .contacthub-compact-icon {
+  transform: scale(1.15) rotate(-5deg);
+  box-shadow: 0 10px 30px var(--tile-color);
+}
+
+.contacthub-contact-icon {
+  font-size: 1.4rem;
+  filter: brightness(1.3);
+}
+
+.contacthub-contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contacthub-contact-value {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 600;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+}
+
+.contacthub-compact-tile:hover .contacthub-contact-value,
+.contacthub-tile-selected .contacthub-contact-value {
+  color: var(--tile-color);
+  text-shadow: 0 0 15px var(--tile-color);
+}
+
+.contacthub-contact-action {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.contacthub-compact-tile:hover .contacthub-contact-action,
+.contacthub-tile-selected .contacthub-contact-action {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contacthub-click-indicator {
+  position: absolute;
+  bottom: var(--spacing-xs);
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.contacthub-compact-tile:hover .contacthub-click-indicator,
+.contacthub-tile-selected .contacthub-click-indicator {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contacthub-tile-glow {
+  position: absolute;
+  inset: -2px;
+  background: var(--tile-color);
+  border-radius: 18px;
+  opacity: 0;
+  filter: blur(12px);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.contacthub-compact-tile:hover .contacthub-tile-glow,
+.contacthub-tile-selected .contacthub-tile-glow {
+  opacity: 0.3;
+  animation: contacthub-glow-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes contacthub-glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+}
+
+.contacthub-tile-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(45deg, var(--tile-color), transparent, var(--tile-color));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.contacthub-compact-tile:hover .contacthub-tile-border,
+.contacthub-tile-selected .contacthub-tile-border {
+  opacity: 0.8;
+}
+
+/* ===============================
+   BUSINESS HOURS SECTION
+   =============================== */
+
+.contacthub-hours-section {
+  margin-bottom: calc(var(--spacing-xl) * 2);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s;
+}
+
+.contacthub-section-loaded .contacthub-hours-section {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.contacthub-hours-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contacthub-hours-header {
+  padding: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contacthub-hours-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.contacthub-hours-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f59e0b, rgba(255, 255, 255, 0.1));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.contacthub-hours-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.contacthub-hours-title {
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.contacthub-current-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contacthub-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+.contacthub-status-open {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.contacthub-status-closed {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.contacthub-today-hours {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+}
+
+.contacthub-hours-toggle {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contacthub-hours-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contacthub-toggle-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contacthub-toggle-open .contacthub-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+.contacthub-hours-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.contacthub-dropdown-open {
+  max-height: 300px;
+}
+
+.contacthub-hours-list {
+  padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.contacthub-hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.contacthub-hours-item:last-child {
+  border-bottom: none;
+}
+
+.contacthub-current-day {
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-sm);
+  margin: 2px 0;
+  border-bottom-color: transparent !important;
+}
+
+.contacthub-day-name {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+}
+
+.contacthub-current-day .contacthub-day-name {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.contacthub-day-hours {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.contacthub-open {
+  color: #22c55e;
+}
+
+.contacthub-closed {
+  color: #ef4444;
+}
+
+/* ===============================
+   FOOTER MESSAGE
+   =============================== */
+
+.contacthub-footer-message {
+  text-align: center;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s;
+}
+
+.contacthub-section-loaded .contacthub-footer-message {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.contacthub-message-text {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   FOOTER SECTION
+   =============================== */
+
+.contacthub-footer {
+  position: relative;
+  z-index: 2;
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(15, 15, 35, 0.9) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  margin-top: calc(var(--spacing-xl) * 2);
+}
+
+.contacthub-footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-xl) * 2) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-xl) * 1.5);
+}
+
+.contacthub-footer-nav {
+  text-align: center;
+}
+
+.contacthub-nav-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: var(--spacing-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contacthub-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contacthub-nav-link {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: contacthub-nav-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--link-delay);
+}
+
+@keyframes contacthub-nav-appear {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.contacthub-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contacthub-nav-link:active {
+  transform: translateY(0);
+}
+
+.contacthub-footer-copyright {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contacthub-copyright-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+   =============================== */
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .contacthub-content-wrapper {
+    max-width: 1200px;
+  }
+
+  .contacthub-tiles-container {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1000px;
+  }
+
+  .contacthub-compact-tile {
+    height: 140px;
+  }
+}
+
+/* Desktop/Laptop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .contacthub-tiles-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contacthub-compact-tile {
+    height: 135px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .contacthub-main-section {
+    padding: calc(var(--spacing-xl) * 1.5) 0 0 0;
+  }
+
+  .contacthub-main-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+  }
+
+  .contacthub-tiles-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .contacthub-compact-tile {
+    height: 120px;
+  }
+
+  .contacthub-hours-header {
+    padding: var(--spacing-lg);
+  }
+
+  .contacthub-nav-links {
+    gap: var(--spacing-sm);
+  }
+
+  .contacthub-nav-link {
+    padding: 8px var(--spacing-md);
+    font-size: 0.85rem;
+  }
+
+  /* Hide some decoration shapes */
+  .contacthub-shape:nth-child(n+4) {
+    display: none;
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+  .contacthub-main-section {
+    padding: var(--spacing-xl) 0 0 0;
+  }
+
+  .contacthub-content-wrapper {
+    padding: 0 var(--spacing-md) calc(var(--spacing-xl) * 1.5) var(--spacing-md);
+  }
+
+  .contacthub-main-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .contacthub-tiles-container {
+    max-width: 420px;
+    gap: var(--spacing-md);
+  }
+
+  .contacthub-compact-tile {
+    height: 110px;
+  }
+
+  .contacthub-tile-content {
+    padding: var(--spacing-md);
+  }
+
+  .contacthub-hours-header {
+    padding: var(--spacing-md);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+
+  .contacthub-hours-toggle {
+    align-self: center;
+  }
+
+  .contacthub-nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .contacthub-nav-link {
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .contacthub-footer-content {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  /* Hide decoration shapes on mobile */
+  .contacthub-decoration-shapes {
+    display: none;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .contacthub-content-wrapper {
+    padding: 0 var(--spacing-sm) var(--spacing-xl) var(--spacing-sm);
+  }
+
+  .contacthub-main-title {
+    font-size: clamp(1.6rem, 3.8vw, 2.2rem);
+  }
+
+  .contacthub-tiles-container {
+    max-width: 320px;
+    gap: var(--spacing-sm);
+  }
+
+  .contacthub-compact-tile {
+    height: 100px;
+    border-radius: 12px;
+  }
+
+  .contacthub-tile-content {
+    padding: var(--spacing-sm);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-xs);
+  }
+
+  .contacthub-compact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .contacthub-contact-icon {
+    font-size: 1.1rem;
+  }
+
+  .contacthub-contact-value {
+    font-size: 0.85rem;
+  }
+
+  .contacthub-contact-action {
+    font-size: 0.75rem;
+  }
+
+  .contacthub-click-indicator {
+    display: none;
+  }
+
+  .contacthub-hours-card {
+    border-radius: 12px;
+  }
+
+  .contacthub-hours-header {
+    padding: var(--spacing-sm);
+  }
+
+  .contacthub-hours-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contacthub-hours-title {
+    font-size: 1.1rem;
+  }
+
+  .contacthub-hours-list {
+    padding: var(--spacing-sm);
+  }
+
+  .contacthub-hours-item {
+    padding: 6px 0;
+    font-size: 0.8rem;
+  }
+
+  .contacthub-current-day {
+    padding: 6px;
+  }
+
+  .contacthub-message-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contacthub-nav-title {
+    font-size: 1.1rem;
+  }
+
+  .contacthub-nav-link {
+    padding: 6px var(--spacing-sm);
+    font-size: 0.8rem;
+    min-width: 150px;
+  }
+
+  .contacthub-footer-content {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .contacthub-content-wrapper {
+    padding: 0 var(--spacing-xs) var(--spacing-md) var(--spacing-xs);
+  }
+
+  .contacthub-tiles-container {
+    max-width: 280px;
+  }
+
+  .contacthub-compact-tile {
+    height: 90px;
+  }
+
+  .contacthub-hours-card {
+    margin: 0 var(--spacing-xs);
+  }
+
+  .contacthub-footer-content {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
+
+.contacthub-compact-tile:focus,
+.contacthub-hours-toggle:focus,
+.contacthub-nav-link:focus {
+  outline: 3px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.contacthub-hours-toggle:focus .contacthub-toggle-arrow {
+  color: #6366f1;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .contacthub-decoration-shapes {
+    display: none !important;
+  }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+  .contacthub-main-section {
+    background: #000 !important;
+  }
+
+  .contacthub-compact-tile,
+  .contacthub-hours-card,
+  .contacthub-footer {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid white !important;
+  }
+
+  .contacthub-main-title,
+  .contacthub-hours-title,
+  .contacthub-nav-title {
+    color: white !important;
+  }
+
+  .contacthub-contact-value,
+  .contacthub-contact-action,
+  .contacthub-message-text,
+  .contacthub-day-name,
+  .contacthub-day-hours,
+  .contacthub-copyright-text {
+    color: black !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .contacthub-backdrop,
+  .contacthub-decoration-shapes,
+  .contacthub-tile-glow,
+  .contacthub-tile-border,
+  .contacthub-click-indicator,
+  .contacthub-hours-toggle {
+    display: none !important;
+  }
+
+  .contacthub-main-section {
+    background: white !important;
+    padding: var(--spacing-lg) 0 !important;
+  }
+
+  .contacthub-tiles-container {
+    display: block !important;
+  }
+
+  .contacthub-compact-tile {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    transform: none !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    margin-bottom: var(--spacing-md);
+    height: auto !important;
+  }
+
+  .contacthub-hours-dropdown {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .contacthub-footer {
+    background: #f9f9f9 !important;
+    border-top: 1px solid #ddd !important;
+  }
+
+  .contacthub-main-title,
+  .contacthub-contact-value,
+  .contacthub-contact-action,
+  .contacthub-message-text,
+  .contacthub-hours-title,
+  .contacthub-day-name,
+  .contacthub-day-hours,
+  .contacthub-nav-title,
+  .contacthub-copyright-text {
+    color: black !important;
+  }
+
+  .contacthub-nav-link {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    color: black !important;
+  }
+}
+/* ===============================
+   ENHANCED NAVIGATION STYLES
+   =============================== */
+
+.contacthub-nav-link {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: contacthub-nav-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--link-delay);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes contacthub-nav-appear {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.contacthub-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contacthub-nav-link:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.contacthub-nav-text {
+  transition: all 0.3s ease;
+}
+
+.contacthub-nav-arrow {
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contacthub-nav-link:hover .contacthub-nav-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contacthub-nav-link:focus {
+  outline: 3px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Loading state for navigation */
+.contacthub-nav-link:active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: contacthub-nav-loading 0.8s ease-out;
+}
+
+@keyframes contacthub-nav-loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Success feedback for navigation */
+.contacthub-nav-success {
+  background: rgba(34, 197, 94, 0.2) !important;
+  border-color: rgba(34, 197, 94, 0.4) !important;
+  color: #22c55e !important;
+}
+
+/* Error feedback for navigation */
+.contacthub-nav-error {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: #ef4444 !important;
+}
+
+/* Enhanced hover states for different screen types */
+@media (hover: hover) and (pointer: fine) {
+  .contacthub-nav-link:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .contacthub-nav-link:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px) scale(0.98);
+  }
+}
+
+/* ===============================
+   RESPONSIVE NAVIGATION UPDATES
+   =============================== */
+
+/* Mobile Navigation Enhancements */
+@media (max-width: 767px) {
+  .contacthub-nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .contacthub-nav-link {
+    min-width: 220px;
+    text-align: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .contacthub-nav-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .contacthub-nav-link {
+    min-width: 180px;
+    font-size: 0.85rem;
+    padding: 8px var(--spacing-md);
+  }
+
+  .contacthub-nav-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY IMPROVEMENTS
+   =============================== */
+
+/* Focus management */
+.contacthub-nav-link:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.2);
+}
+
+/* Screen reader improvements */
+.contacthub-nav-link[aria-pressed="true"] {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* High contrast mode navigation */
+@media (prefers-contrast: high) {
+  .contacthub-nav-link {
+    background: white !important;
+    border: 2px solid black !important;
+    color: black !important;
+  }
+
+  .contacthub-nav-link:hover {
+    background: #f0f0f0 !important;
+    border-color: #333 !important;
+  }
+
+  .contacthub-nav-link:focus {
+    outline: 4px solid #0066cc !important;
+  }
+}
+
+/* Print navigation styles */
+@media print {
+  .contacthub-nav-links {
+    display: block !important;
+  }
+
+  .contacthub-nav-link {
+    display: inline-block !important;
+    background: white !important;
+    border: 1px solid #ddd !important;
+    color: black !important;
+    transform: none !important;
+    box-shadow: none !important;
+    margin: 2px !important;
+    page-break-inside: avoid;
+  }
+
+  .contacthub-nav-arrow {
+    display: none !important;
+  }
+
+  .contacthub-nav-link::after {
+    content: " (" attr(title) ")";
+    font-size: 0.7rem;
+    color: #666;
+  }
+}

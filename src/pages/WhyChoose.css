@@ -1,0 +1,521 @@
+@import '../styles/variables.css';
+
+/* ===============================
+   SCROLLING SPACE FOUNDATION
+   =============================== */
+
+.servcl-scroll-space {
+  position: relative;
+  min-height: 80vh;
+  padding: calc(var(--spacing-xl) * 2) 0;
+  background: radial-gradient(ellipse at center, #1e293b 0%, #0f172a 70%, #020617 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark Background */
+.servcl-dark-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.02) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.servcl-scroll-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* ===============================
+   TITLE SECTION
+   =============================== */
+
+.servcl-scroll-header {
+  text-align: center;
+  margin-bottom: calc(var(--spacing-xl) * 2);
+}
+
+.servcl-scroll-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.servcl-space-active .servcl-scroll-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   HORIZONTAL SCROLLING CARDS
+   =============================== */
+
+.servcl-scrolling-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--spacing-lg) 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-out 0.5s;
+}
+
+.servcl-space-active .servcl-scrolling-wrapper {
+  opacity: 1;
+}
+
+.servcl-scrolling-track {
+  display: flex;
+  gap: var(--spacing-lg);
+  animation: servcl-scroll-infinite 30s linear infinite;
+  will-change: transform;
+}
+
+.servcl-scrolling-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes servcl-scroll-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 5 - var(--spacing-lg) * 5)); }
+}
+
+/* Colorful Mini Cards */
+.servcl-mini-card {
+  flex-shrink: 0;
+  width: 250px;
+  height: 200px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.servcl-mini-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 6px 15px rgba(0, 0, 0, 0.15),
+    0 0 30px var(--glow-color);
+}
+
+/* Colorful Mini Interface */
+.servcl-mini-interface {
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-gradient);
+  transition: all 0.3s ease;
+}
+
+/* Colorful Mini Header */
+.servcl-mini-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.servcl-mini-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-gradient);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px var(--glow-color);
+  transition: all 0.3s ease;
+}
+
+.servcl-mini-card:hover .servcl-mini-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px var(--glow-color);
+}
+
+.servcl-mini-emoji {
+  font-size: 1rem;
+  filter: brightness(1.2);
+}
+
+/* Mini Content */
+.servcl-mini-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.servcl-mini-title {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+}
+
+.servcl-mini-desc {
+  color: #64748b;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Colorful Mini Footer */
+.servcl-mini-footer {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.servcl-mini-status {
+  height: 2px;
+  background: var(--status-gradient);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.servcl-mini-status::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: servcl-status-slide 2s ease-in-out infinite;
+}
+
+.servcl-mini-card:hover .servcl-mini-status::after {
+  animation-duration: 1s;
+}
+
+@keyframes servcl-status-slide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===============================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   =============================== */
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .servcl-mini-card {
+    width: 280px;
+    height: 220px;
+  }
+
+  .servcl-mini-interface {
+    padding: calc(var(--spacing-lg) * 1.2);
+  }
+
+  .servcl-mini-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .servcl-mini-emoji {
+    font-size: 1.1rem;
+  }
+
+  .servcl-mini-title {
+    font-size: 1rem;
+  }
+
+  .servcl-mini-desc {
+    font-size: 0.8rem;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-280px * 5 - var(--spacing-lg) * 5)); }
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .servcl-mini-card {
+    width: 260px;
+    height: 210px;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-260px * 5 - var(--spacing-lg) * 5)); }
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .servcl-scroll-space {
+    padding: calc(var(--spacing-xl) * 1.5) 0;
+  }
+
+  .servcl-scroll-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  }
+
+  .servcl-mini-card {
+    width: 240px;
+    height: 190px;
+  }
+
+  .servcl-mini-interface {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-mini-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .servcl-mini-emoji {
+    font-size: 0.9rem;
+  }
+
+  .servcl-mini-title {
+    font-size: 0.9rem;
+  }
+
+  .servcl-mini-desc {
+    font-size: 0.7rem;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-240px * 5 - var(--spacing-lg) * 5)); }
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+  .servcl-scroll-space {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .servcl-scroll-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+  }
+
+  .servcl-scrolling-wrapper {
+    padding: var(--spacing-md) 0;
+  }
+
+  .servcl-scrolling-track {
+    gap: var(--spacing-md);
+  }
+
+  .servcl-mini-card {
+    width: 220px;
+    height: 180px;
+  }
+
+  .servcl-mini-interface {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-mini-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .servcl-mini-emoji {
+    font-size: 0.85rem;
+  }
+
+  .servcl-mini-title {
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .servcl-mini-desc {
+    font-size: 0.65rem;
+    -webkit-line-clamp: 2;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-220px * 5 - var(--spacing-md) * 5)); }
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .servcl-scroll-space {
+    padding: calc(var(--spacing-lg) * 2) 0;
+  }
+
+  .servcl-scroll-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .servcl-scrolling-wrapper {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .servcl-scrolling-track {
+    gap: var(--spacing-sm);
+  }
+
+  .servcl-mini-card {
+    width: 200px;
+    height: 170px;
+  }
+
+  .servcl-mini-interface {
+    padding: var(--spacing-sm);
+  }
+
+  .servcl-mini-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .servcl-mini-emoji {
+    font-size: 0.8rem;
+  }
+
+  .servcl-mini-title {
+    font-size: 0.8rem;
+  }
+
+  .servcl-mini-desc {
+    font-size: 0.6rem;
+    -webkit-line-clamp: 2;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 5 - var(--spacing-sm) * 5)); }
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .servcl-mini-card {
+    width: 180px;
+    height: 160px;
+  }
+
+  .servcl-mini-interface {
+    padding: calc(var(--spacing-xs) * 2);
+  }
+
+  .servcl-mini-title {
+    font-size: 0.75rem;
+  }
+
+  .servcl-mini-desc {
+    font-size: 0.55rem;
+  }
+
+  @keyframes servcl-scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-180px * 5 - var(--spacing-sm) * 5)); }
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY & PERFORMANCE
+   =============================== */
+
+.servcl-mini-card:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 6px 15px rgba(0, 0, 0, 0.15),
+    0 0 30px var(--glow-color);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .servcl-scrolling-track {
+    animation: none !important;
+  }
+
+  .servcl-scrolling-track {
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .servcl-mini-status::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .servcl-scroll-space {
+    background: #000 !important;
+  }
+
+  .servcl-mini-card {
+    background: white !important;
+    border: 2px solid black !important;
+  }
+
+  .servcl-mini-interface {
+    background: white !important;
+  }
+
+  .servcl-mini-title,
+  .servcl-mini-desc {
+    color: black !important;
+  }
+
+  .servcl-scroll-title {
+    color: white !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .servcl-scroll-space {
+    background: white !important;
+    padding: var(--spacing-lg) 0 !important;
+  }
+
+  .servcl-scrolling-track {
+    animation: none !important;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md) !important;
+  }
+
+  .servcl-mini-card {
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    break-inside: avoid;
+  }
+
+  .servcl-mini-title,
+  .servcl-mini-desc {
+    color: black !important;
+  }
+
+  .servcl-scroll-title {
+    color: black !important;
+  }
+}

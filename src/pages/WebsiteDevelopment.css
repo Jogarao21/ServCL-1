@@ -1,0 +1,1073 @@
+@import '../styles/variables.css';
+
+/* ===============================
+   WEBDEV COSMOS FOUNDATION
+   =============================== */
+
+.servcl-webdev-cosmos {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) * 2) 0;
+  background: 
+    linear-gradient(135deg, #0d1117 0%, #161b22 25%, #21262d 50%, #161b22 75%, #0d1117 100%),
+    radial-gradient(circle at 25% 25%, rgba(88, 166, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(48, 209, 88, 0.03) 0%, transparent 50%);
+  font-family: 'Fira Code', 'Consolas', monospace;
+  overflow: hidden;
+}
+
+/* Animated Code Matrix Background */
+.servcl-code-matrix {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.servcl-matrix-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.servcl-floating-code {
+  position: absolute;
+  color: rgba(88, 166, 255, 0.2);
+  font-size: clamp(12px, 1vw, 16px);
+  font-weight: 500;
+  animation: servcl-code-drift 20s linear infinite;
+  user-select: none;
+}
+
+.servcl-layer-html .servcl-floating-code:nth-child(1) {
+  top: 10%; left: 5%; animation-delay: 0s; color: rgba(255, 123, 114, 0.2);
+}
+.servcl-layer-html .servcl-floating-code:nth-child(2) {
+  top: 30%; right: 15%; animation-delay: 2s; color: rgba(121, 192, 255, 0.2);
+}
+.servcl-layer-html .servcl-floating-code:nth-child(3) {
+  bottom: 20%; left: 20%; animation-delay: 4s; color: rgba(255, 123, 114, 0.2);
+}
+.servcl-layer-html .servcl-floating-code:nth-child(4) {
+  top: 60%; left: 10%; animation-delay: 6s; color: rgba(255, 184, 108, 0.2);
+}
+.servcl-layer-html .servcl-floating-code:nth-child(5) {
+  bottom: 40%; right: 25%; animation-delay: 8s; color: rgba(121, 192, 255, 0.2);
+}
+
+.servcl-layer-css .servcl-floating-code:nth-child(1) {
+  top: 20%; right: 30%; animation-delay: 1s; color: rgba(48, 209, 88, 0.2);
+}
+.servcl-layer-css .servcl-floating-code:nth-child(2) {
+  bottom: 30%; left: 40%; animation-delay: 3s; color: rgba(255, 212, 59, 0.2);
+}
+.servcl-layer-css .servcl-floating-code:nth-child(3) {
+  top: 50%; right: 10%; animation-delay: 5s; color: rgba(255, 123, 114, 0.2);
+}
+.servcl-layer-css .servcl-floating-code:nth-child(4) {
+  bottom: 10%; left: 60%; animation-delay: 7s; color: rgba(174, 129, 255, 0.2);
+}
+
+@keyframes servcl-code-drift {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-50px) translateX(20px) rotate(5deg); opacity: 0; }
+}
+
+/* Terminal Grid Background */
+.servcl-terminal-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+  animation: servcl-grid-pulse 4s ease-in-out infinite;
+}
+
+@keyframes servcl-grid-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+.servcl-webdev-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===============================
+   TERMINAL HEADER
+   =============================== */
+
+.servcl-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: linear-gradient(135deg, rgba(22, 27, 34, 0.9), rgba(33, 38, 45, 0.9));
+  border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 12px 12px 0 0;
+}
+
+.servcl-terminal-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.servcl-control {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.servcl-close { background: #ff5f56; }
+.servcl-minimize { background: #ffbd2e; }
+.servcl-maximize { background: #27ca3f; }
+
+.servcl-terminal-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ===============================
+   ANIMATED TITLE SECTION
+   =============================== */
+
+.servcl-webdev-header {
+  padding: calc(var(--spacing-xl) * 1.5) 0;
+  text-align: center;
+}
+
+.servcl-webdev-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-xl);
+  font-family: 'Fira Code', monospace;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.servcl-cosmos-initialized .servcl-webdev-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.servcl-title-prompt {
+  color: #48d1cc;
+  margin-right: var(--spacing-xs);
+}
+
+.servcl-title-command {
+  color: #ff6b6b;
+  margin-right: var(--spacing-sm);
+}
+
+.servcl-typing-text {
+  color: #58a6ff;
+  position: relative;
+}
+
+.servcl-cursor {
+  color: #fff;
+  animation: servcl-cursor-blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes servcl-cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Description Terminal */
+.servcl-webdev-description {
+  max-width: 800px;
+  margin: 0 auto;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+}
+
+.servcl-cosmos-initialized .servcl-webdev-description {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.servcl-description-terminal {
+  background: rgba(22, 27, 34, 0.6);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.servcl-terminal-prompt {
+  color: #30d158;
+  font-size: 1rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.servcl-description-text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+}
+
+/* ===============================
+   COMPACT FEATURE MODULES
+   =============================== */
+
+.servcl-features-workspace {
+  padding: calc(var(--spacing-xl) * 1.5) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.servcl-feature-module {
+  background: linear-gradient(135deg, 
+    rgba(22, 27, 34, 0.8) 0%, 
+    rgba(33, 38, 45, 0.6) 100%
+  );
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(-100px);
+  opacity: 0;
+  transition-delay: var(--feature-delay);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.servcl-cosmos-initialized .servcl-feature-module {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.servcl-feature-module:hover,
+.servcl-module-active {
+  border-color: var(--feature-color);
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.25),
+    0 0 15px var(--feature-color);
+  transform: translateX(8px) scale(1.005);
+}
+
+/* Compact Module Header */
+.servcl-module-header {
+  background: linear-gradient(135deg, 
+    rgba(22, 27, 34, 0.9) 0%, 
+    rgba(33, 38, 45, 0.7) 100%
+  );
+  border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+  padding: 0;
+}
+
+.servcl-module-tab {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-xs);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.servcl-tab-icon {
+  font-size: 1rem;
+}
+
+.servcl-tab-title {
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-tab-close {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.servcl-tab-close:hover {
+  background: rgba(255, 95, 86, 0.2);
+  color: #ff5f56;
+}
+
+/* Compact Module Content */
+.servcl-module-content {
+  padding: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+/* Content Info */
+.servcl-content-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.servcl-feature-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.servcl-title-number {
+  color: var(--feature-color);
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-title-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+  line-height: 1.3;
+}
+
+.servcl-feature-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Compact Tech Stack */
+.servcl-tech-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.servcl-stack-label {
+  color: rgba(115, 138, 148, 0.8);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.servcl-tech-tag {
+  background: linear-gradient(135deg, 
+    var(--feature-color) 0%, 
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  color: rgba(255, 255, 255, 0.9);
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: servcl-tag-appear 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: var(--tag-delay);
+}
+
+@keyframes servcl-tag-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Compact Code Preview */
+.servcl-code-preview {
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.servcl-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px var(--spacing-sm);
+  background: rgba(22, 27, 34, 0.8);
+  border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.servcl-code-lang {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-code-copy {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.servcl-code-copy:hover {
+  transform: scale(1.1);
+}
+
+.servcl-code-block {
+  padding: var(--spacing-md);
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  overflow-x: auto;
+}
+
+.servcl-syntax-highlight {
+  color: #e6edf3;
+}
+
+/* Compact Module Status */
+.servcl-module-status {
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: rgba(13, 17, 23, 0.6);
+  border-top: 1px solid rgba(88, 166, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servcl-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.servcl-status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--feature-color);
+  border-radius: 50%;
+  animation: servcl-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes servcl-status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.servcl-status-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-module-progress {
+  width: 100px;
+  height: 3px;
+  background: rgba(88, 166, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.servcl-progress-bar {
+  height: 100%;
+  background: var(--feature-color);
+  width: 0;
+  border-radius: 2px;
+  animation: servcl-progress-fill 2s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+.servcl-module-active .servcl-progress-bar {
+  animation-play-state: running;
+}
+
+@keyframes servcl-progress-fill {
+  0% { width: 0; }
+  100% { width: 85%; }
+}
+
+/* ===============================
+   COMPACT TERMINAL FOOTER
+   =============================== */
+
+.servcl-terminal-footer {
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(22, 27, 34, 0.9), rgba(33, 38, 45, 0.7));
+  border-top: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 0 0 12px 12px;
+}
+
+.servcl-footer-command {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: 'Fira Code', monospace;
+}
+
+.servcl-footer-prompt {
+  color: #30d158;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.servcl-footer-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.servcl-footer-cursor {
+  color: #fff;
+  animation: servcl-cursor-blink 1s infinite;
+}
+
+/* ===============================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   =============================== */
+
+/* Extra Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+  .servcl-webdev-container {
+    max-width: 1600px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .servcl-module-content {
+    padding: calc(var(--spacing-xl) * 1.5);
+    gap: calc(var(--spacing-xl) * 1.5);
+  }
+
+  .servcl-description-text {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+  }
+
+  .servcl-feature-description {
+    font-size: clamp(0.9rem, 1.6vw, 1rem);
+  }
+}
+
+/* Large Desktop (1440px - 1919px) */
+@media (max-width: 1919px) and (min-width: 1440px) {
+  .servcl-webdev-container {
+    max-width: 1400px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+  }
+
+  .servcl-module-content {
+    padding: calc(var(--spacing-xl) * 1.3);
+    gap: calc(var(--spacing-xl) * 1.3);
+  }
+}
+
+/* Desktop (1200px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1200px) {
+  .servcl-webdev-container {
+    max-width: 1200px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .servcl-module-content {
+    padding: var(--spacing-xl);
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Laptop (1024px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1024px) {
+  .servcl-webdev-container {
+    max-width: 1000px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  }
+
+  .servcl-module-content {
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-description-text {
+    font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  }
+
+  .servcl-feature-description {
+    font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  }
+}
+
+/* Large Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .servcl-webdev-cosmos {
+    padding: calc(var(--spacing-xl) * 1.5) 0;
+  }
+
+  .servcl-webdev-container {
+    max-width: 750px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+  }
+
+  .servcl-webdev-header {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .servcl-features-workspace {
+    padding: var(--spacing-xl) 0;
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-module-content {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-code-preview {
+    order: -1;
+    min-height: 140px;
+  }
+
+  .servcl-description-terminal {
+    padding: var(--spacing-md);
+  }
+
+  /* Hide some floating code for performance */
+  .servcl-floating-code:nth-child(n+4) {
+    display: none;
+  }
+}
+
+/* Tablet (641px - 767px) */
+@media (max-width: 767px) and (min-width: 641px) {
+  .servcl-webdev-cosmos {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .servcl-webdev-container {
+    margin: 0 var(--spacing-md);
+    max-width: none;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.4rem, 3.8vw, 2.4rem);
+  }
+
+  .servcl-webdev-header {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .servcl-description-terminal {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+  }
+
+  .servcl-features-workspace {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    gap: var(--spacing-md);
+  }
+
+  .servcl-feature-module {
+    transform: translateY(30px);
+  }
+
+  .servcl-cosmos-initialized .servcl-feature-module {
+    transform: translateY(0);
+  }
+
+  .servcl-module-content {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .servcl-terminal-header {
+    padding: 6px var(--spacing-sm);
+  }
+
+  .servcl-terminal-title {
+    font-size: 0.75rem;
+  }
+
+  .servcl-control {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Large Mobile (481px - 640px) */
+@media (max-width: 640px) and (min-width: 481px) {
+  .servcl-webdev-container {
+    margin: 0 var(--spacing-sm);
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+  }
+
+  .servcl-webdev-header {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .servcl-features-workspace {
+    padding: var(--spacing-md) var(--spacing-xs);
+  }
+
+  .servcl-module-content {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-feature-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .servcl-title-text {
+    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  }
+
+  .servcl-feature-description {
+    font-size: 0.8rem;
+  }
+
+  .servcl-code-preview {
+    min-height: 120px;
+  }
+
+  .servcl-code-block {
+    padding: var(--spacing-sm);
+    font-size: 0.7rem;
+  }
+
+  .servcl-tech-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .servcl-terminal-footer {
+    padding: var(--spacing-sm);
+  }
+
+  /* Hide floating code on mobile */
+  .servcl-code-matrix {
+    display: none;
+  }
+}
+
+/* Mobile (376px - 480px) */
+@media (max-width: 480px) and (min-width: 376px) {
+  .servcl-webdev-container {
+    margin: 0 var(--spacing-xs);
+    border-radius: 8px;
+  }
+
+  .servcl-terminal-header {
+    border-radius: 8px 8px 0 0;
+  }
+
+  .servcl-terminal-footer {
+    border-radius: 0 0 8px 8px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.2rem, 3.2vw, 1.8rem);
+    line-height: 1.3;
+  }
+
+  .servcl-webdev-header {
+    padding: var(--spacing-md) var(--spacing-xs);
+  }
+
+  .servcl-description-terminal {
+    padding: var(--spacing-sm);
+  }
+
+  .servcl-description-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .servcl-features-workspace {
+    padding: var(--spacing-sm) var(--spacing-xs);
+    gap: var(--spacing-sm);
+  }
+
+  .servcl-feature-module {
+    border-radius: 8px;
+  }
+
+  .servcl-module-content {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .servcl-feature-description {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .servcl-code-preview {
+    min-height: 100px;
+    border-radius: 4px;
+  }
+
+  .servcl-code-block {
+    font-size: 0.65rem;
+    padding: 8px;
+  }
+
+  .servcl-tech-tags {
+    gap: 4px;
+  }
+
+  .servcl-tech-tag {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  .servcl-footer-command {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .servcl-footer-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Mobile (321px - 375px) */
+@media (max-width: 375px) and (min-width: 321px) {
+  .servcl-webdev-container {
+    margin: 0 8px;
+  }
+
+  .servcl-webdev-title {
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+  }
+
+  .servcl-webdev-header {
+    padding: var(--spacing-sm) 8px;
+  }
+
+  .servcl-features-workspace {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .servcl-module-content {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .servcl-title-text {
+    font-size: 0.9rem;
+  }
+
+  .servcl-feature-description {
+    font-size: 0.7rem;
+  }
+
+  .servcl-code-block {
+    font-size: 0.6rem;
+    padding: 6px;
+  }
+
+  .servcl-tech-tag {
+    font-size: 0.6rem;
+    padding: 1px 5px;
+  }
+
+  .servcl-terminal-header {
+    padding: 4px 8px;
+  }
+
+  .servcl-terminal-footer {
+    padding: 8px;
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .servcl-webdev-container {
+    margin: 0 4px;
+  }
+
+  .servcl-webdev-title {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .servcl-webdev-header,
+  .servcl-features-workspace {
+    padding: 6px;
+  }
+
+  .servcl-module-content {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .servcl-title-text {
+    font-size: 0.85rem;
+  }
+
+  .servcl-feature-description {
+    font-size: 0.65rem;
+  }
+
+  .servcl-description-text {
+    font-size: 0.75rem;
+  }
+
+  .servcl-code-block {
+    font-size: 0.55rem;
+    padding: 4px;
+  }
+
+  .servcl-tech-tag {
+    font-size: 0.55rem;
+    padding: 1px 4px;
+  }
+
+  .servcl-terminal-grid {
+    background-size: 30px 30px;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY & PERFORMANCE
+   =============================== */
+
+.servcl-feature-module:focus-within {
+  outline: 2px solid var(--feature-color);
+  outline-offset: 3px;
+}
+
+.servcl-tab-close:focus {
+  outline: 2px solid #ff5f56;
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .servcl-code-matrix,
+  .servcl-terminal-grid {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .servcl-webdev-cosmos {
+    background: #000 !important;
+  }
+
+  .servcl-webdev-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid white !important;
+  }
+
+  .servcl-feature-module {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid black !important;
+  }
+
+  .servcl-webdev-title,
+  .servcl-description-text,
+  .servcl-feature-title,
+  .servcl-feature-description {
+    color: black !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .servcl-code-matrix,
+  .servcl-terminal-grid,
+  .servcl-terminal-header,
+  .servcl-terminal-footer {
+    display: none !important;
+  }
+
+  .servcl-webdev-cosmos {
+    background: white !important;
+    padding: var(--spacing-lg) 0 !important;
+  }
+
+  .servcl-webdev-container {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .servcl-feature-module {
+    background: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+    transform: none !important;
+    box-shadow: none !important;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .servcl-module-content {
+    grid-template-columns: 1fr !important;
+    padding: var(--spacing-md) !important;
+  }
+
+  .servcl-webdev-title,
+  .servcl-description-text,
+  .servcl-feature-title,
+  .servcl-feature-description {
+    color: black !important;
+  }
+}

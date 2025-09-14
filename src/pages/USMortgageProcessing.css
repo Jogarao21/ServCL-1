@@ -1,0 +1,790 @@
+@import '../styles/variables.css';
+
+/* ===============================
+   COLORED SPACE FOUNDATION
+   =============================== */
+
+.servcl-colored-space {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) * 3) 0;
+  background: 
+    radial-gradient(ellipse at top, #1e293b 0%, #0f172a 50%, #020617 100%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #374151 50%, #1e293b 75%, #0f172a 100%);
+  overflow: hidden;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+/* Dark Space Backdrop */
+.servcl-space-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.servcl-stars-layer {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #ffffff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #ffffff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: servcl-stars-twinkle 8s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes servcl-stars-twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+.servcl-cosmic-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(14, 165, 233, 0.02) 0%, transparent 50%);
+}
+
+.servcl-colored-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* ===============================
+   SPACE HEADER
+   =============================== */
+
+.servcl-space-header {
+  text-align: center;
+  margin-bottom: calc(var(--spacing-xl) * 3);
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.servcl-space-revealed .servcl-space-header {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.servcl-space-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: var(--spacing-xl);
+  text-shadow: 0 0 30px rgba(248, 250, 252, 0.3);
+  position: relative;
+}
+
+.servcl-space-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  animation: servcl-title-glow 3s ease-in-out infinite;
+}
+
+@keyframes servcl-title-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.servcl-space-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(248, 250, 252, 0.8);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ===============================
+   COLORED FLOATING DEVICES ARENA
+   =============================== */
+
+.servcl-colored-arena {
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--spacing-xl) * 2);
+  transform-style: preserve-3d;
+}
+
+.servcl-colored-device {
+  width: 350px;
+  height: 280px;
+  transform: 
+    translateX(var(--device-x)) 
+    translateY(var(--device-y)) 
+    translateZ(-200px) 
+    rotateX(15deg) 
+    rotateY(var(--device-rotate)) 
+    scale(0.8);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: var(--device-delay);
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.servcl-space-revealed .servcl-colored-device {
+  transform: 
+    translateX(var(--device-x)) 
+    translateY(var(--device-y)) 
+    translateZ(0px) 
+    rotateX(0deg) 
+    rotateY(var(--device-rotate)) 
+    scale(1);
+  opacity: 1;
+}
+
+.servcl-colored-device:hover {
+  transform: 
+    translateX(var(--device-x)) 
+    translateY(var(--device-y)) 
+    translateZ(50px) 
+    rotateX(-5deg) 
+    rotateY(calc(var(--device-rotate) * 1.2)) 
+    scale(1.05);
+}
+
+/* Colored Device Frame */
+.servcl-colored-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-gradient);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.servcl-colored-device:hover .servcl-colored-frame {
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 30px var(--bg-gradient);
+}
+
+/* Colored Screen */
+.servcl-colored-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--screen-gradient);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   PREVIEW CONTENT (Always Visible)
+   =============================== */
+
+.servcl-preview-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+}
+
+.servcl-colored-device:hover .servcl-preview-content {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+}
+
+.servcl-preview-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.servcl-colored-device:hover .servcl-preview-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.servcl-service-emoji {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.servcl-preview-title {
+  color: #1e293b;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   REVEAL CONTENT (Hover Only)
+   =============================== */
+
+.servcl-reveal-content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  z-index: 3;
+}
+
+.servcl-colored-device:hover .servcl-reveal-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Content Header */
+.servcl-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: 
+    linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.servcl-window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.servcl-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.servcl-control-red { background: #ff5f57; }
+.servcl-control-yellow { background: #ffbd2e; }
+.servcl-control-green { background: #28ca42; }
+
+.servcl-header-title {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Detailed Content */
+.servcl-detailed-content {
+  padding: calc(var(--spacing-xl) * 1.5);
+  height: calc(100% - 45px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.servcl-document-desc {
+  color: #475569;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+/* Status Section */
+.servcl-status-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: auto;
+}
+
+.servcl-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.servcl-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: servcl-status-blink 2s ease-in-out infinite;
+}
+
+@keyframes servcl-status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.servcl-status-text {
+  color: #22c55e;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.servcl-progress-mini {
+  width: 80px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.servcl-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 2px;
+  width: 0;
+  animation: servcl-progress-load 2s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.servcl-colored-device:hover .servcl-progress-fill {
+  animation-play-state: running;
+}
+
+@keyframes servcl-progress-load {
+  0% { width: 0%; }
+  100% { width: 85%; }
+}
+
+/* Device Reflection */
+.servcl-device-reflection {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      transparent 30%, 
+      transparent 70%, 
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.servcl-colored-device:hover .servcl-device-reflection {
+  opacity: 1;
+  animation: servcl-reflection-sweep 2s ease-in-out infinite;
+}
+
+@keyframes servcl-reflection-sweep {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* ===============================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   =============================== */
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  .servcl-colored-container {
+    max-width: 1600px;
+  }
+
+  .servcl-colored-device {
+    width: 380px;
+    height: 300px;
+  }
+
+  .servcl-preview-content {
+    padding: calc(var(--spacing-xl) * 1.5);
+  }
+
+  .servcl-detailed-content {
+    padding: calc(var(--spacing-xl) * 2);
+  }
+
+  .servcl-preview-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 2.2rem;
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .servcl-colored-arena {
+    gap: var(--spacing-xl);
+  }
+
+  .servcl-colored-device {
+    width: 330px;
+    height: 260px;
+  }
+
+  .servcl-preview-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .servcl-colored-space {
+    padding: calc(var(--spacing-xl) * 2) 0;
+    perspective: 1200px;
+  }
+
+  .servcl-space-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  }
+
+  .servcl-colored-arena {
+    min-height: 600px;
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-colored-device {
+    width: 300px;
+    height: 240px;
+    transform: 
+      translateX(calc(var(--device-x) * 0.5)) 
+      translateY(calc(var(--device-y) * 0.5)) 
+      translateZ(-100px) 
+      rotateX(10deg) 
+      rotateY(calc(var(--device-rotate) * 0.5)) 
+      scale(0.9);
+  }
+
+  .servcl-space-revealed .servcl-colored-device {
+    transform: 
+      translateX(calc(var(--device-x) * 0.5)) 
+      translateY(calc(var(--device-y) * 0.5)) 
+      translateZ(0px) 
+      rotateX(0deg) 
+      rotateY(calc(var(--device-rotate) * 0.5)) 
+      scale(1);
+  }
+
+  .servcl-preview-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 1.5rem;
+  }
+
+  .servcl-detailed-content {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Mobile (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+  .servcl-colored-space {
+    padding: var(--spacing-xl) 0;
+    perspective: 1000px;
+  }
+
+  .servcl-colored-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .servcl-space-title {
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+  }
+
+  .servcl-space-header {
+    margin-bottom: calc(var(--spacing-xl) * 2);
+  }
+
+  .servcl-colored-arena {
+    min-height: auto;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-colored-device {
+    width: 320px;
+    height: 220px;
+    transform: translateY(50px) scale(0.9);
+  }
+
+  .servcl-space-revealed .servcl-colored-device {
+    transform: translateY(0) scale(1);
+  }
+
+  .servcl-colored-device:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .servcl-preview-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 1.3rem;
+  }
+
+  .servcl-preview-content {
+    padding: var(--spacing-lg);
+  }
+
+  .servcl-detailed-content {
+    padding: var(--spacing-lg);
+  }
+
+  /* Hide stars for performance */
+  .servcl-stars-layer {
+    display: none;
+  }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+  .servcl-colored-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .servcl-space-title {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+  }
+
+  .servcl-colored-device {
+    width: 280px;
+    height: 200px;
+  }
+
+  .servcl-colored-frame {
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  .servcl-colored-screen,
+  .servcl-reveal-content {
+    border-radius: 8px;
+  }
+
+  .servcl-content-header {
+    padding: 8px var(--spacing-sm);
+  }
+
+  .servcl-control {
+    width: 10px;
+    height: 10px;
+  }
+
+  .servcl-preview-content {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-detailed-content {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-preview-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 1.2rem;
+  }
+
+  .servcl-preview-title {
+    font-size: 1rem;
+  }
+
+  .servcl-document-desc {
+    font-size: 0.8rem;
+  }
+
+  .servcl-progress-mini {
+    width: 60px;
+    height: 3px;
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .servcl-colored-container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .servcl-colored-device {
+    width: 260px;
+    height: 180px;
+  }
+
+  .servcl-preview-content,
+  .servcl-detailed-content {
+    padding: var(--spacing-sm);
+  }
+
+  .servcl-preview-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .servcl-service-emoji {
+    font-size: 1.1rem;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY & PERFORMANCE
+   =============================== */
+
+.servcl-colored-device:focus-within {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
+.servcl-colored-device:focus-within .servcl-reveal-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.servcl-colored-device:focus-within .servcl-preview-content {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .servcl-space-backdrop,
+  .servcl-device-reflection {
+    display: none !important;
+  }
+
+  .servcl-colored-device {
+    transform: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .servcl-colored-space {
+    background: #000 !important;
+  }
+
+  .servcl-colored-frame {
+    background: white !important;
+    border: 2px solid black !important;
+  }
+
+  .servcl-colored-screen,
+  .servcl-reveal-content {
+    background: white !important;
+    border: 1px solid black !important;
+  }
+
+  .servcl-space-title {
+    color: white !important;
+  }
+
+  .servcl-preview-title,
+  .servcl-document-desc {
+    color: black !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .servcl-space-backdrop,
+  .servcl-device-reflection {
+    display: none !important;
+  }
+
+  .servcl-colored-space {
+    background: white !important;
+    padding: var(--spacing-lg) 0 !important;
+  }
+
+  .servcl-colored-arena {
+    display: block !important;
+  }
+
+  .servcl-colored-device {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    break-inside: avoid;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .servcl-colored-frame {
+    background: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+  }
+
+  .servcl-reveal-content {
+    opacity: 1 !important;
+    transform: none !important;
+    position: static !important;
+  }
+
+  .servcl-preview-content {
+    display: none !important;
+  }
+
+  .servcl-space-title,
+  .servcl-preview-title,
+  .servcl-document-desc {
+    color: black !important;
+  }
+}

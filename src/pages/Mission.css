@@ -1,0 +1,582 @@
+@import '../styles/variables.css';
+
+/* ===============================
+   MISSION NEXUS FOUNDATION
+   =============================== */
+
+.servcl-mission-nexus {
+  position: relative;
+  min-height: 85vh;
+  padding: calc(var(--spacing-xl) * 3) 0;
+  background: linear-gradient(135deg,
+    #0F1419 0%, #365486 35%, #7FC7D9 70%, #0F1419 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Dynamic Morphing Background */
+.servcl-mission-morphbg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.servcl-morph-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  will-change: transform;
+}
+
+.servcl-sphere-primary {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 40% 40%, 
+    rgba(125, 10, 10, 0.18) 0%, 
+    rgba(54, 84, 134, 0.12) 60%, 
+    transparent 100%
+  );
+  top: -150px;
+  right: -200px;
+  animation: servcl-morph-float-1 18s ease-in-out infinite;
+}
+
+.servcl-sphere-secondary {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 60% 60%, 
+    rgba(127, 199, 217, 0.15) 0%, 
+    rgba(232, 244, 248, 0.08) 50%, 
+    transparent 100%
+  );
+  bottom: -120px;
+  left: -150px;
+  animation: servcl-morph-float-2 22s ease-in-out infinite reverse;
+}
+
+.servcl-sphere-tertiary {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, 
+    rgba(54, 84, 134, 0.12) 0%, 
+    rgba(125, 10, 10, 0.08) 70%, 
+    transparent 100%
+  );
+  top: 40%;
+  right: 15%;
+  animation: servcl-morph-float-3 16s ease-in-out infinite;
+}
+
+@keyframes servcl-morph-float-1 {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  33% { transform: scale(1.1) rotate(120deg); }
+  66% { transform: scale(0.9) rotate(240deg); }
+}
+
+@keyframes servcl-morph-float-2 {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(180deg); }
+}
+
+@keyframes servcl-morph-float-3 {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(90deg); }
+  75% { transform: scale(0.95) rotate(270deg); }
+}
+
+/* Container */
+.servcl-mission-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--bp-large);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  text-align: center;
+}
+
+/* ===============================
+   HOLOGRAPHIC TITLE
+   =============================== */
+
+.servcl-mission-header {
+  margin-bottom: calc(var(--spacing-xl) * 2);
+  position: relative;
+}
+
+.servcl-mission-holo-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.servcl-holo-word {
+  display: block;
+  position: relative;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.servcl-nexus-active .servcl-holo-word {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.servcl-word-our {
+  background: linear-gradient(135deg,
+    #7FC7D9 0%, #E8F4F8 50%, #365486 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(127, 199, 217, 0.3);
+  transition-delay: 0.2s;
+}
+
+.servcl-word-mission {
+  background: linear-gradient(135deg,
+    #7D0A0A 0%, #365486 50%, #7FC7D9 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 50px rgba(125, 10, 10, 0.4);
+  transition-delay: 0.5s;
+  position: relative;
+}
+
+.servcl-nexus-active .servcl-word-mission {
+  animation: servcl-holo-pulse 3s ease-in-out infinite;
+}
+
+@keyframes servcl-holo-pulse {
+  0%, 100% { 
+    text-shadow: 0 0 30px rgba(125, 10, 10, 0.2); 
+  }
+  50% { 
+    text-shadow: 0 0 60px rgba(125, 10, 10, 0.5), 0 0 80px rgba(127, 199, 217, 0.3); 
+  }
+}
+
+/* Interactive Pulse Ring */
+.servcl-mission-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+}
+
+.servcl-mission-pulse-ring > div {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 50%;
+  animation: servcl-ring-pulse 4s ease-in-out infinite;
+}
+
+.servcl-ring-outer {
+  width: 100%;
+  height: 100%;
+  border-color: rgba(127, 199, 217, 0.3);
+  animation-delay: 0s;
+}
+
+.servcl-ring-middle {
+  width: 75%;
+  height: 75%;
+  top: 12.5%;
+  left: 12.5%;
+  border-color: rgba(54, 84, 134, 0.4);
+  animation-delay: 0.5s;
+}
+
+.servcl-ring-inner {
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  border-color: rgba(125, 10, 10, 0.5);
+  animation-delay: 1s;
+}
+
+.servcl-ring-core {
+  width: 25%;
+  height: 25%;
+  top: 37.5%;
+  left: 37.5%;
+  background: radial-gradient(circle, #7D0A0A, #365486);
+  border: none;
+  animation: servcl-core-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes servcl-ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 0.3; }
+}
+
+@keyframes servcl-core-glow {
+  0% { box-shadow: 0 0 20px rgba(125, 10, 10, 0.5); }
+  100% { box-shadow: 0 0 40px rgba(125, 10, 10, 0.8), 0 0 60px rgba(127, 199, 217, 0.3); }
+}
+
+/* ===============================
+   HOLOGRAPHIC PANEL
+   =============================== */
+
+.servcl-mission-holo-panel {
+  position: relative;
+  background: linear-gradient(135deg,
+    rgba(232, 244, 248, 0.12) 0%,
+    rgba(127, 199, 217, 0.08) 50%,
+    rgba(54, 84, 134, 0.10) 100%
+  );
+  border: 1px solid rgba(127, 199, 217, 0.3);
+  border-radius: 20px;
+  padding: calc(var(--spacing-xl) * 1.5);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  transform: scale(0.9) translateY(50px);
+  opacity: 0;
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+}
+
+.servcl-nexus-active .servcl-mission-holo-panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Mission Grid */
+.servcl-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: calc(var(--spacing-xl) * 1.5);
+  position: relative;
+  z-index: 2;
+}
+
+/* Mission Segments */
+.servcl-mission-segment {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(127, 199, 217, 0.05) 100%
+  );
+  border: 1px solid rgba(127, 199, 217, 0.2);
+  border-radius: 15px;
+  padding: var(--spacing-xl);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.servcl-nexus-active .servcl-mission-segment {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.servcl-segment-primary { transition-delay: 0.6s; }
+.servcl-segment-secondary { transition-delay: 0.8s; }
+.servcl-segment-tertiary { transition-delay: 1s; }
+
+.servcl-mission-segment::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(127, 199, 217, 0.1), 
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.servcl-mission-segment:hover::before {
+  left: 100%;
+}
+
+.servcl-mission-segment:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(127, 199, 217, 0.15);
+  border-color: rgba(127, 199, 217, 0.4);
+}
+
+/* Segment Header */
+.servcl-segment-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.servcl-header-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #7D0A0A, #365486);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(125, 10, 10, 0.3);
+  transition: all 0.3s ease;
+}
+
+.servcl-mission-segment:hover .servcl-header-icon {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 6px 20px rgba(125, 10, 10, 0.5);
+}
+
+.servcl-segment-title {
+  color: var(--color-white);
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 8px rgba(127, 199, 217, 0.3);
+  margin: 0;
+}
+
+/* Segment Content */
+.servcl-segment-content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Holographic Grid Overlay */
+.servcl-holo-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(127, 199, 217, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 199, 217, 0.03) 1px, transparent 1px);
+  background-size: 25px 25px;
+  border-radius: 20px;
+  animation: servcl-grid-drift 15s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes servcl-grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 25px 25px, 25px 25px; }
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+   =============================== */
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .servcl-mission-container {
+    max-width: 1600px;
+  }
+
+  .servcl-panel-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop */
+@media (max-width: 1023px) {
+  .servcl-mission-holo-title {
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    gap: var(--spacing-md);
+  }
+
+  .servcl-mission-pulse-ring {
+    width: 160px;
+    height: 160px;
+  }
+
+  .servcl-panel-grid {
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Tablet */
+@media (max-width: 767px) {
+  .servcl-mission-nexus {
+    padding: calc(var(--spacing-xl) * 2) 0;
+  }
+
+  .servcl-mission-holo-title {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .servcl-mission-pulse-ring {
+    width: 120px;
+    height: 120px;
+  }
+
+  .servcl-mission-holo-panel {
+    padding: var(--spacing-xl);
+  }
+
+  .servcl-panel-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .servcl-mission-segment {
+    padding: var(--spacing-lg);
+  }
+
+  /* Reduce morphing spheres size */
+  .servcl-sphere-primary {
+    width: 350px;
+    height: 350px;
+  }
+
+  .servcl-sphere-secondary {
+    width: 300px;
+    height: 300px;
+  }
+
+  .servcl-sphere-tertiary {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .servcl-mission-nexus {
+    padding: calc(var(--spacing-xl) * 1.5) 0;
+  }
+
+  .servcl-mission-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .servcl-mission-holo-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+
+  .servcl-mission-pulse-ring {
+    width: 100px;
+    height: 100px;
+  }
+
+  .servcl-mission-holo-panel {
+    padding: var(--spacing-lg);
+  }
+
+  .servcl-mission-segment {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-header-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .servcl-segment-title {
+    font-size: 1.1rem;
+  }
+
+  .servcl-segment-content {
+    font-size: 1rem;
+  }
+
+  /* Hide morphing spheres on mobile for performance */
+  .servcl-mission-morphbg {
+    display: none;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+  .servcl-mission-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .servcl-mission-holo-panel {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-segment-content {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY & PERFORMANCE
+   =============================== */
+
+.servcl-mission-segment:focus-within {
+  outline: 2px solid #7FC7D9;
+  outline-offset: 3px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .servcl-mission-morphbg,
+  .servcl-holo-grid-overlay {
+    display: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .servcl-word-our,
+  .servcl-word-mission {
+    background: var(--color-white) !important;
+    color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-black) !important;
+  }
+
+  .servcl-mission-segment {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid white !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .servcl-mission-morphbg,
+  .servcl-mission-pulse-ring,
+  .servcl-holo-grid-overlay {
+    display: none !important;
+  }
+
+  .servcl-mission-nexus {
+    background: white !important;
+    color: black !important;
+  }
+
+  .servcl-segment-content {
+    color: black !important;
+  }
+}
