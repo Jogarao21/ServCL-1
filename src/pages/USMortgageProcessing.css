@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '../styles/variables.css';
 
 /* ===============================
@@ -545,3 +546,552 @@
   margin: 0;
   opacity: 0.9;
 }
+=======
+@import '../styles/variables.css';
+
+/* ===============================
+   MOBILE-FIRST FOUNDATION
+   =============================== */
+
+.servcl-professional-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.servcl-section-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===============================
+   SECTION HEADER
+   =============================== */
+
+.servcl-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.servcl-section-active .servcl-section-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.servcl-section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.servcl-section-description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* ===============================
+   CARDS LAYOUT - MOBILE FIRST
+   =============================== */
+
+.servcl-cards-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.servcl-professional-card {
+  position: relative;
+  height: 300px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  transition-delay: calc(var(--card-delay, 0ms));
+}
+
+.servcl-section-active .servcl-professional-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.servcl-professional-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   CARD FRONT (Always Visible)
+   =============================== */
+
+.servcl-card-front {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
+}
+
+.servcl-professional-card:hover .servcl-card-front {
+  opacity: 0.2;
+}
+
+.servcl-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.servcl-service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.servcl-professional-card:hover .servcl-service-image {
+  transform: scale(1.05);
+}
+
+.servcl-title-section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20px;
+  border-radius: 0 0 16px 16px;
+}
+
+.servcl-service-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ===============================
+   CONTENT PANEL - SIMPLE VERSION
+   =============================== */
+
+.servcl-content-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.servcl-professional-card:hover .servcl-content-panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.servcl-panel-inner {
+  padding: 30px 20px;
+  text-align: center;
+  max-width: 90%;
+}
+
+.servcl-panel-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.servcl-panel-description {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===============================
+   TABLET STYLES (768px+)
+   =============================== */
+
+@media (min-width: 768px) {
+  .servcl-section-title {
+    font-size: 36px;
+  }
+  
+  .servcl-section-description {
+    font-size: 18px;
+  }
+
+  .servcl-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 800px;
+  }
+
+  .servcl-professional-card {
+    height: 350px;
+  }
+
+  .servcl-image-container {
+    height: 240px;
+  }
+
+  .servcl-service-title {
+    font-size: 18px;
+  }
+
+  .servcl-panel-title {
+    font-size: 20px;
+  }
+
+  .servcl-panel-description {
+    font-size: 17px;
+  }
+
+  .servcl-panel-inner {
+    padding: 40px 30px;
+  }
+}
+
+/* ===============================
+   DESKTOP STYLES (1024px+)
+   =============================== */
+
+@media (min-width: 1024px) {
+  .servcl-section-title {
+    font-size: 48px;
+  }
+
+  .servcl-cards-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+  }
+
+  .servcl-professional-card {
+    height: 380px;
+  }
+
+  .servcl-image-container {
+    height: 260px;
+  }
+
+  .servcl-panel-title {
+    font-size: 22px;
+  }
+
+  .servcl-panel-description {
+    font-size: 18px;
+  }
+}
+
+/* ===============================
+   LARGE DESKTOP STYLES (1200px+)
+   =============================== */
+
+@media (min-width: 1200px) {
+  .servcl-section-title {
+    font-size: 56px;
+  }
+
+  .servcl-cards-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .servcl-professional-card {
+    height: 400px;
+  }
+
+  .servcl-image-container {
+    height: 280px;
+  }
+}
+
+/* ===============================
+   EXTRA LARGE DESKTOP (1440px+)
+   =============================== */
+
+@media (min-width: 1440px) {
+  .servcl-cards-row {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    max-width: 1600px;
+  }
+
+  .servcl-professional-card {
+    height: 420px;
+  }
+
+  .servcl-image-container {
+    height: 300px;
+  }
+
+  .servcl-panel-title {
+    font-size: 24px;
+  }
+
+  .servcl-panel-description {
+    font-size: 19px;
+  }
+
+  .servcl-panel-inner {
+    padding: 50px 35px;
+  }
+}
+
+/* ===============================
+   MOBILE TOUCH INTERACTIONS
+   =============================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .servcl-professional-card:active .servcl-content-panel {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .servcl-professional-card:active .servcl-card-front {
+    opacity: 0.2;
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
+
+.servcl-professional-card:focus {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.servcl-professional-card:focus .servcl-content-panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.servcl-professional-card:focus .servcl-card-front {
+  opacity: 0.2;
+}
+
+/* ===============================
+   LOADING STATES
+   =============================== */
+
+.servcl-service-image.loading {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ===============================
+   PRINT STYLES
+   =============================== */
+
+@media print {
+  .servcl-professional-section {
+    background: white;
+    padding: 20px 0;
+  }
+
+  .servcl-cards-row {
+    display: block;
+  }
+
+  .servcl-professional-card {
+    display: block;
+    height: auto;
+    margin-bottom: 30px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .servcl-image-container {
+    height: 200px;
+  }
+
+  .servcl-content-panel {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: #f9f9f9;
+    color: black;
+  }
+
+  .servcl-panel-title,
+  .servcl-panel-description {
+    color: black;
+  }
+}
+
+/* ===============================
+   HIGH CONTRAST MODE
+   =============================== */
+
+@media (prefers-contrast: high) {
+  .servcl-professional-card {
+    border: 2px solid black;
+  }
+
+  .servcl-content-panel {
+    background: black;
+    border: 2px solid white;
+  }
+
+  .servcl-panel-title,
+  .servcl-panel-description {
+    color: white;
+  }
+}
+
+/* ===============================
+   REDUCED MOTION
+   =============================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===============================
+   DEBUG MODE (Remove after testing)
+   =============================== */
+
+/* Uncomment this to test if hover is working */
+/*
+.servcl-content-panel {
+  background: red !important;
+  opacity: 0.8 !important;
+  visibility: visible !important;
+}
+
+.servcl-panel-description {
+  background: blue !important;
+  color: white !important;
+  padding: 20px !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+}
+*/
+/* ===============================
+   PROFESSIONAL DARK THEME HOVER
+   =============================== */
+
+.servcl-content-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, 
+      rgba(15, 23, 42, 0.96) 0%, 
+      rgba(30, 41, 59, 0.92) 100%
+    );
+  border-radius: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.servcl-professional-card:hover .servcl-content-panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.servcl-panel-inner {
+  padding: 40px 30px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  position: relative;
+}
+
+.servcl-panel-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+}
+
+.servcl-panel-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.servcl-panel-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.servcl-panel-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0;
+  opacity: 0.9;
+}
+>>>>>>> 6f35773 (Updated USMortgageProcessing)
