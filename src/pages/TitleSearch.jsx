@@ -34,7 +34,7 @@ const TitleSearch = () => {
       icon: '🔍',
       position: { x: 20, y: 15 },
       connections: ['reports', 'curative'],
-      hologram: 'linear-gradient(45deg, #00f5ff, #0066ff, #8a2be2, #ff1493)'
+      hologram: 'linear-gradient(45deg, #00f5ff, #e7edf6ff, #8a2be2, #ff1493)'
     },
     {
       id: 'reports',
