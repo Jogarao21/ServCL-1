@@ -4,7 +4,6 @@ import WhoWeAre from './WhoWeAre';
 import Vision from './Vision';
 import Mission from './Mission';
 import Values from './Values';
-import Story from './Story';
 import Commitment from './Commitment';
 import WhyChoose from './WhyChoose';
 import WebsiteDevelopment from './WebsiteDevelopment';
@@ -12,6 +11,9 @@ import USMortgageProcessing from './USMortgageProcessing';
 import TitleSearch from './TitleSearch';
 import SoftwareServices from './SoftwareServices';
 import Contact from './Contact';
+
+// Import the fiber optic arrow image
+import fiberOpticArrow from '../assets/fiber-optic-arrow.png';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -191,12 +193,37 @@ const Home = () => {
 
           <div className="servcl-nexus-visual">
             <div className="servcl-geometric-mandala">
-              <div className="servcl-mandala-ring servcl-ring-outer"></div>
-              <div className="servcl-mandala-ring servcl-ring-middle"></div>
-              <div className="servcl-mandala-ring servcl-ring-inner"></div>
-              <div className="servcl-mandala-core">
-                <span className="servcl-core-symbol">⚡</span>
+              
+              {/* Outer Ring with Train-like Text */}
+              <div className="servcl-mandala-ring servcl-ring-outer">
+                <div className="servcl-train-track servcl-track-outer">
+                  <span className="servcl-train-text">YOUR PREMIER</span>
+                </div>
               </div>
+              
+              {/* Middle Ring with Train-like Text */}
+              <div className="servcl-mandala-ring servcl-ring-middle">
+                <div className="servcl-train-track servcl-track-middle">
+                  <span className="servcl-train-text">BUSINESS OUTSOURCING</span>
+                </div>
+              </div>
+              
+              {/* Inner Ring with Train-like Text */}
+              <div className="servcl-mandala-ring servcl-ring-inner">
+                <div className="servcl-train-track servcl-track-inner">
+                  <span className="servcl-train-text">PARTNER</span>
+                </div>
+              </div>
+              
+              {/* Core with Full-Size Fiber Optic Arrow Image */}
+              <div className="servcl-mandala-core">
+                <img 
+                  src={fiberOpticArrow} 
+                  alt="ServCL Fiber Optic Arrow" 
+                  className="servcl-core-image-full"
+                />
+              </div>
+              
             </div>
           </div>
         </div>
