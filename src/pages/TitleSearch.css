@@ -320,7 +320,10 @@
     0 0 40px var(--hologram-gradient);
 }
 
-/* Holographic Surface */
+/* ===============================
+   HOLOGRAPHIC SURFACE - RESTORED CENTERED LAYOUT
+   =============================== */
+
 .servcl-holographic-surface {
   position: relative;
   z-index: 3;
@@ -371,46 +374,57 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Hidden Content Panel */
+/* ===============================
+   SIMPLIFIED CONTENT PANEL - CLEAN LIKE IMAGE
+   =============================== */
+
 .servcl-content-panel {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 5;
   opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  background: 
-    linear-gradient(135deg, 
-      rgba(0, 0, 0, 0.8) 0%, 
-      rgba(0, 0, 0, 0.6) 100%
-    );
+  visibility: hidden;
+  transform: scale(0.98);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  background: rgba(0, 0, 0, 0.92);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
-}
-
-.servcl-glass-node:hover .servcl-content-panel,
-.servcl-node-expanded .servcl-content-panel {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.servcl-panel-inner {
-  padding: var(--spacing-xl);
-  height: 100%;
+  backdrop-filter: blur(12px);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
 }
 
-.servcl-panel-description {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-  line-height: 1.6;
-  margin: 0;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+/* GUARANTEED VISIBILITY ON HOVER */
+.servcl-glass-node:hover .servcl-content-panel,
+.servcl-node-expanded .servcl-content-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
 }
+
+/* SIMPLE PANEL LAYOUT */
+.servcl-panel-inner {
+  padding: calc(var(--spacing-xl) * 1.5);
+  width: 100%;
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CLEAN SIMPLE DESCRIPTION - LIKE YOUR IMAGE */
+.servcl-panel-description {
+  color: #ffffff !important;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  /* NO BACKGROUND, NO BORDERS - CLEAN LIKE IMAGE */
+}
+
 
 /* Geometric Decorations */
 .servcl-panel-decorations {
@@ -573,57 +587,161 @@
 }
 
 /* ===============================
-   COMPREHENSIVE RESPONSIVE DESIGN
+   COMPREHENSIVE RESPONSIVE DESIGN - MOBILE FIRST
    =============================== */
 
-/* Large Desktop (1440px+) */
-@media (min-width: 1440px) {
+/* Mobile Base Styles (320px+) */
+@media (max-width: 767px) {
+  .servcl-holographic-realm {
+    padding: calc(var(--spacing-xl) * 2) 0;
+    perspective: 1000px;
+  }
+
   .servcl-holographic-container {
-    max-width: 1600px;
+    max-width: 100%;
+    padding: 0 var(--spacing-md);
+  }
+
+  .servcl-morph-layer {
+    filter: blur(40px);
+    opacity: 0.2;
+  }
+
+  .servcl-hologram-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .servcl-description-fragment {
+    padding: var(--spacing-lg);
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .servcl-property-network {
-    min-height: 700px;
-    max-width: 1200px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    position: static;
+  }
+
+  .servcl-network-web {
+    display: none;
+  }
+
+  .servcl-glass-node {
+    position: static;
+    transform: none;
+    margin: 0 auto var(--spacing-lg) auto;
+    max-width: 300px;
+  }
+
+  .servcl-realm-activated .servcl-glass-node {
+    transform: none;
+  }
+
+  .servcl-glass-node:hover {
+    transform: scale(1.02);
   }
 
   .servcl-glass-prism {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: 140px;
+    max-width: 300px;
+  }
+
+  .servcl-holographic-surface {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
 
   .servcl-surface-icon {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
 
-  .servcl-node-icon {
-    font-size: 1.8rem;
+  .servcl-surface-title {
+    flex: 1;
+    font-size: 0.95rem;
+  }
+
+  .servcl-panel-inner {
+    padding: var(--spacing-lg);
+  }
+
+  .servcl-panel-description {
+    font-size: 0.85rem;
+    padding: var(--spacing-md);
+  }
+
+  /* Hide particles for performance */
+  .servcl-geometric-particles {
+    display: none;
   }
 }
 
-/* Desktop (1024px - 1439px) */
-@media (max-width: 1439px) and (min-width: 1024px) {
-  .servcl-property-network {
-    min-height: 650px;
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .servcl-holographic-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .servcl-hologram-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .servcl-description-fragment {
+    padding: var(--spacing-md);
+    font-size: 0.85rem;
   }
 
   .servcl-glass-prism {
-    width: 220px;
-    height: 220px;
+    height: 120px;
+    max-width: 280px;
+  }
+
+  .servcl-holographic-surface {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-surface-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .servcl-surface-title {
+    font-size: 0.9rem;
+  }
+
+  .servcl-panel-inner {
+    padding: var(--spacing-md);
+  }
+
+  .servcl-panel-description {
+    font-size: 0.8rem;
+    padding: var(--spacing-sm);
+  }
+
+  .servcl-panel-decorations {
+    display: none;
   }
 }
 
 /* Tablet (768px - 1023px) */
-@media (max-width: 1023px) and (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .servcl-holographic-realm {
-    padding: calc(var(--spacing-xl) * 2) 0;
+    padding: calc(var(--spacing-xl) * 2.5) 0;
   }
 
   .servcl-hologram-title {
     font-size: clamp(2.5rem, 7vw, 4.5rem);
-    flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
   }
 
   .servcl-property-network {
@@ -654,138 +772,89 @@
   }
 }
 
-/* Mobile (481px - 767px) */
-@media (max-width: 767px) and (min-width: 481px) {
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
   .servcl-holographic-realm {
-    padding: var(--spacing-xl) 0;
-  }
-
-  .servcl-holographic-container {
-    padding: 0 var(--spacing-md);
+    padding: calc(var(--spacing-xl) * 3) 0;
   }
 
   .servcl-hologram-title {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(3rem, 8vw, 5rem);
   }
 
   .servcl-property-network {
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    position: static;
-  }
-
-  .servcl-network-web {
-    display: none;
-  }
-
-  .servcl-glass-node {
-    position: static;
-    transform: none;
-    margin: 0 auto;
-  }
-
-  .servcl-realm-activated .servcl-glass-node {
-    transform: none;
-  }
-
-  .servcl-glass-node:hover {
-    transform: scale(1.05);
+    min-height: 600px;
   }
 
   .servcl-glass-prism {
-    width: 280px;
-    height: 160px;
-  }
-
-  .servcl-holographic-surface {
-    flex-direction: row;
-    text-align: left;
-    gap: var(--spacing-md);
+    width: 200px;
+    height: 200px;
   }
 
   .servcl-surface-icon {
     width: 60px;
     height: 60px;
-    margin-bottom: 0;
-  }
-
-  .servcl-surface-title {
-    flex: 1;
   }
 
   .servcl-panel-inner {
-    padding: var(--spacing-md);
-  }
-
-  /* Hide geometric particles on mobile */
-  .servcl-geometric-particles {
-    display: none;
+    padding: calc(var(--spacing-xl) * 1.5);
   }
 }
 
-/* Small Mobile (320px - 480px) */
-@media (max-width: 480px) {
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
   .servcl-holographic-container {
-    padding: 0 var(--spacing-sm);
+    max-width: 1600px;
   }
 
-  .servcl-hologram-title {
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-  }
-
-  .servcl-description-fragment {
-    padding: var(--spacing-lg) var(--spacing-md);
-    font-size: 0.9rem;
-    line-height: 1.6;
+  .servcl-property-network {
+    min-height: 700px;
+    max-width: 1200px;
   }
 
   .servcl-glass-prism {
-    width: 260px;
-    height: 140px;
-  }
-
-  .servcl-holographic-surface {
-    padding: var(--spacing-md);
+    width: 250px;
+    height: 250px;
   }
 
   .servcl-surface-icon {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
   }
 
   .servcl-node-icon {
-    font-size: 1.2rem;
-  }
-
-  .servcl-surface-title {
-    font-size: 0.9rem;
+    font-size: 1.8rem;
   }
 
   .servcl-panel-description {
-    font-size: 0.8rem;
-  }
-
-  .servcl-panel-decorations {
-    display: none;
+    font-size: 1rem;
   }
 }
 
-/* Extra Small Mobile (320px and below) */
-@media (max-width: 320px) {
-  .servcl-holographic-container {
-    padding: 0 var(--spacing-xs);
+/* ===============================
+   TOUCH DEVICE OPTIMIZATIONS
+   =============================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .servcl-glass-node {
+    cursor: default;
   }
 
-  .servcl-glass-prism {
-    width: 240px;
-    height: 130px;
+  .servcl-glass-node:active .servcl-content-panel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) scale(1) !important;
   }
 
-  .servcl-holographic-surface,
-  .servcl-panel-inner {
-    padding: var(--spacing-sm);
+  .servcl-glass-node:active .servcl-holographic-surface {
+    opacity: 0 !important;
+    transform: translateY(-15px) scale(0.95) !important;
+  }
+
+  /* Reduce complex animations for better performance */
+  .servcl-holographic-reflections,
+  .servcl-energy-ring {
+    display: none;
   }
 }
 
@@ -800,8 +869,9 @@
 }
 
 .servcl-glass-node:focus-within .servcl-content-panel {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
 }
 
 .servcl-glass-node:focus-within .servcl-holographic-surface {
@@ -854,15 +924,21 @@
     -webkit-text-fill-color: white !important;
   }
 
-  .servcl-surface-title,
-  .servcl-panel-description,
-  .servcl-description-fragment {
+  .servcl-surface-title {
     color: black !important;
     text-shadow: none !important;
   }
 
   .servcl-panel-description {
     color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid white !important;
+  }
+
+  .servcl-description-fragment {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid white !important;
   }
 }
 
@@ -903,6 +979,7 @@
 
   .servcl-content-panel {
     opacity: 1 !important;
+    visibility: visible !important;
     transform: none !important;
     position: static !important;
     background: white !important;
@@ -919,5 +996,6 @@
     color: black !important;
     background: none !important;
     -webkit-text-fill-color: black !important;
+    text-shadow: none !important;
   }
 }
