@@ -1,6 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './SoftwareServices.css';
 
+// Import images properly - Add these imports at the top
+import BespokeIcon from '../assets/BeSpokeSoftwareDevelopment.png';
+import CloudIcon from '../assets/CloudBasedSolutions.png';
+import ApiIcon from '../assets/ApiDevelopmentAndIntegration.png';
+import QualityIcon from '../assets/SoftwareTestingAndQualityAssurance.png';
+import SupportIcon from '../assets/ITSupportAndMaintenance.png';
+
 const SoftwareServices = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
@@ -20,35 +27,35 @@ const SoftwareServices = () => {
       id: 1,
       title: 'Bespoke Software Development',
       description: 'Build custom applications to address specific business challenges, from CRM systems to workflow automation tools.',
-      icon: '💻',
+      image: BespokeIcon, // Use imported image
       color: '#00d4ff'
     },
     {
       id: 2,
       title: 'Cloud-Based Solutions',
       description: 'Deploy secure, scalable cloud applications using platforms like AWS, Azure, or Google Cloud for flexibility and accessibility.',
-      icon: '☁️',
+      image: CloudIcon, // Use imported image
       color: '#ff3366'
     },
     {
       id: 3,
       title: 'API Development and Integration',
       description: 'Create and integrate APIs to connect your systems with third-party services for seamless operations.',
-      icon: '🔗',
+      image: ApiIcon, // Use imported image
       color: '#00ff88'
     },
     {
       id: 4,
       title: 'Software Testing and Quality Assurance',
       description: 'Ensure reliability and performance with rigorous testing methodologies.',
-      icon: '🧪',
+      image: QualityIcon, // Use imported image
       color: '#ffaa00'
     },
     {
       id: 5,
       title: 'IT Support and Maintenance',
       description: 'Provide ongoing support, updates, and troubleshooting to keep your software running smoothly.',
-      icon: '⚙️',
+      image: SupportIcon, // Use imported image
       color: '#aa55ff'
     }
   ];
@@ -97,9 +104,25 @@ const SoftwareServices = () => {
               {/* Card Inner */}
               <div className="servcl-card-inner">
                 
-                {/* Compact Icon */}
+                {/* Compact Icon with Image */}
                 <div className="servcl-compact-icon">
-                  <span className="servcl-icon-symbol">{service.icon}</span>
+                  <img 
+                    src={service.image} 
+                    alt={`${service.title} Icon`}
+                    className="servcl-service-image"
+                    onError={(e) => {
+                      // Fallback if image fails to load
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  {/* Fallback emoji if image fails */}
+                  <span className="servcl-fallback-icon" style={{ display: 'none' }}>
+                    {service.id === 1 ? '💻' : 
+                     service.id === 2 ? '☁️' : 
+                     service.id === 3 ? '🔗' : 
+                     service.id === 4 ? '🧪' : '⚙️'}
+                  </span>
                 </div>
                 
                 {/* Compact Content */}

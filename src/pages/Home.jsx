@@ -101,43 +101,7 @@ const Home = () => {
     }
   ];
 
-  const whyChooseFeatures = [
-    {
-      id: 'expertise',
-      title: 'Industry Expertise',
-      description: 'Deep knowledge across mortgage, real estate, and technology sectors.',
-      icon: '🎯',
-      accentColor: '#7FC7D9'
-    },
-    {
-      id: 'cost-effective',
-      title: 'Cost-Effective Solutions',
-      description: 'High-quality services that reduce operational costs and improve ROI.',
-      icon: '💰',
-      accentColor: '#365486'
-    },
-    {
-      id: 'scalable',
-      title: 'Scalable Operations',
-      description: 'Flexible solutions that adapt to your business growth and changing needs.',
-      icon: '📈',
-      accentColor: '#0F1419'
-    },
-    {
-      id: 'client-centric',
-      title: 'Client-Centric Approach',
-      description: 'Dedicated support and customized strategies to ensure your success.',
-      icon: '🤝',
-      accentColor: '#7D0A0A'
-    },
-    {
-      id: 'global-delivery',
-      title: 'Global Delivery Model',
-      description: 'Leverage our skilled teams and streamlined processes for timely, reliable results.',
-      icon: '🌍',
-      accentColor: '#E8F4F8'
-    }
-  ];
+  
 
   return (
     <div className="servcl-home-sanctuary">
@@ -342,48 +306,7 @@ const Home = () => {
 
 
 
-      {/* Why Choose Dimension */}
-      <section 
-        ref={whyChooseRef}
-        id="why-choose"
-        className={`servcl-dimension-portal ${isVisible['why-choose'] ? 'servcl-portal-opened' : ''}`}
-      >
-        <div className="servcl-portal-container">
-          <div className="servcl-portal-header">
-            <h2 className="servcl-portal-title">
-              <span className="servcl-title-quantum">Why Choose</span>
-              <span className="servcl-title-brand-accent">ServCL?</span>
-            </h2>
-            <div className="servcl-portal-energy-field"></div>
-          </div>
 
-          <div className="servcl-features-matrix">
-            {whyChooseFeatures.map((feature, index) => (
-              <div 
-                key={feature.id}
-                className="servcl-feature-crystal"
-                style={{
-                  '--feature-accent': feature.accentColor,
-                  '--crystal-delay': `${index * 150}ms`
-                }}
-              >
-                <div className="servcl-crystal-facet">
-                  <div className="servcl-crystal-core">
-                    <div className="servcl-feature-icon-nexus">
-                      <span className="servcl-nexus-symbol">{feature.icon}</span>
-                    </div>
-                    <div className="servcl-crystal-content">
-                      <h3 className="servcl-feature-title">{feature.title}</h3>
-                      <p className="servcl-feature-essence">{feature.description}</p>
-                    </div>
-                  </div>
-                  <div className="servcl-crystal-glow"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
         <div id="who-we-are" className='home-section-wrapper'>
           <WhoWeAre />

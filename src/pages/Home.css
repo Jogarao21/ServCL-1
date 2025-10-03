@@ -457,15 +457,21 @@
   --flyer-shadow: rgba(0, 0, 0, 0.15);
   --flyer-gradient: linear-gradient(135deg, #2d3e82 0%, #7b5ba1 50%, #9b7ab8 100%);
   --flyer-light-bg: #f8f9fc;
+  /* New gradient background variables */
+  --gradient-navy: #1a1f3a;
+  --gradient-royal: #2d3e82;
+  --gradient-purple: #5a4a8a;
+  --gradient-violet: #6b5b95;
 }
 
 .servcl-services-constellation {
   padding: 0;
+  /* UPDATED: New gradient background matching the image */
   background: linear-gradient(135deg, 
-    var(--flyer-white) 0%,
-    var(--flyer-light-bg) 30%,
-    var(--flyer-white) 70%,
-    #f1f3f6 100%
+    var(--gradient-navy) 0%,
+    var(--gradient-royal) 25%,
+    var(--gradient-purple) 70%,
+    var(--gradient-violet) 100%
   );
   position: relative;
   overflow: hidden;
@@ -483,7 +489,7 @@
   gap: 0;
 }
 
-/* Corner Dots - Desktop Only */
+/* Corner Dots - Desktop Only - UPDATED for better visibility on dark background */
 .servcl-constellation-container::before {
   content: '';
   position: absolute;
@@ -491,24 +497,26 @@
   left: 40px;
   width: 120px;
   height: 60px;
-  background-image: radial-gradient(circle, var(--flyer-primary) 3px, transparent 3px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 3px, transparent 3px);
   background-size: 15px 15px;
   z-index: 1;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
-/* Left Side - Services Section */
+/* Left Side - Services Section - UPDATED background for dark theme */
 .servcl-services-galaxy {
   display: flex;
   flex-direction: column;
   gap: 0;
   padding: 80px 40px 80px 60px;
-  background: var(--flyer-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   position: relative;
   z-index: 2;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Diagonal Cut */
+/* Diagonal Cut - UPDATED with enhanced gradient */
 .servcl-services-galaxy::after {
   content: '';
   position: absolute;
@@ -516,19 +524,24 @@
   right: 0;
   width: 100px;
   height: 100%;
-  background: var(--flyer-gradient);
+  background: linear-gradient(135deg, 
+    var(--gradient-royal) 0%,
+    var(--gradient-purple) 50%,
+    var(--gradient-violet) 100%
+  );
   z-index: 2;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Dotted Accent Above Heading */
+/* Dotted Accent Above Heading - UPDATED for dark background */
 .servcl-dotted-accent {
   width: 140px;
   height: 40px;
-  background-image: radial-gradient(circle, var(--flyer-primary) 4px, transparent 4px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 4px, transparent 4px);
   background-size: 18px 18px;
   margin-bottom: 20px;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .servcl-constellation-header {
@@ -548,19 +561,21 @@
   letter-spacing: -1px;
 }
 
+/* UPDATED: Title colors for dark background */
 .servcl-title-glow {
   display: block;
-  color: var(--flyer-text-dark);
-  text-shadow: none;
+  color: var(--flyer-white);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   font-weight: 900;
   text-transform: uppercase;
 }
 
 .servcl-title-emphasis {
   display: block;
-  color: var(--flyer-text-dark);
+  color: var(--flyer-white);
   font-weight: 900;
   text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .servcl-constellation-divider {
@@ -626,31 +641,34 @@
   width: 100%;
 }
 
-/* Hexagon Icons */
+/* Hexagon Icons - UPDATED with enhanced styling for dark theme */
 .servcl-service-icon {
   width: 70px;
   height: 70px;
-  background: #000000;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
-  backdrop-filter: none;
-  border: none;
+  backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
   flex-shrink: 0;
   position: relative;
   z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .servcl-planet-atmosphere:hover .servcl-service-icon {
   transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 10px 20px var(--flyer-shadow);
-  background: #000000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
 }
-/* Icon Image Styling - ADD THIS NEW RULE */
+
+/* Icon Image Styling - UPDATED for better visibility */
 .servcl-icon-image {
   width: 60% !important;
   height: 60% !important;
@@ -661,39 +679,40 @@
 
 .servcl-planet-atmosphere:hover .servcl-icon-image {
   transform: scale(1.1);
-  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+  filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
 }
-
-
-
 
 .servcl-planet-atmosphere:hover .servcl-icon-symbol {
   transform: scale(1.1);
 }
 
-/* Service Content Boxes */
+/* Service Content Boxes - UPDATED with enhanced styling */
 .servcl-service-content {
   flex: 1;
-  background: var(--flyer-primary);
+  background: rgba(45, 62, 130, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 18px 30px 18px 40px;
   position: relative;
   margin-left: -20px;
   clip-path: polygon(15px 0%, 100% 0%, 100% 100%, 15px 100%, 0% 50%);
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .servcl-planet-atmosphere:hover .servcl-service-content {
-  background: var(--flyer-secondary);
+  background: rgba(123, 91, 161, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateX(8px);
-  box-shadow: 0 5px 15px var(--flyer-shadow);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .servcl-service-name {
   color: var(--flyer-white);
   font-size: 1.2rem;
   font-weight: 700;
-  text-shadow: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   display: inline-block;
@@ -701,9 +720,10 @@
 
 .servcl-planet-atmosphere:hover .servcl-service-name {
   transform: translateX(2px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Description Below Services */
+/* Description Below Services - UPDATED for dark theme */
 .servcl-service-description-below {
   margin-top: 8px;
   margin-left: 50px;
@@ -711,9 +731,11 @@
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: rgba(45, 62, 130, 0.05);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
-  border-left: 4px solid var(--flyer-primary);
+  border-left: 4px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .servcl-service-description-below.servcl-description-visible {
@@ -723,28 +745,34 @@
 }
 
 .servcl-description-text-below {
-  color: var(--flyer-text-dark);
+  color: var(--flyer-white);
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
   font-style: italic;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Website Link Section */
+/* Website Link Section - UPDATED with enhanced styling */
 .servcl-website-link-section {
   position: relative;
   z-index: 3;
 }
 
 .servcl-website-link-container {
-  background: var(--flyer-secondary);
+  background: linear-gradient(135deg, 
+    rgba(123, 91, 161, 0.9) 0%,
+    rgba(155, 122, 184, 0.9) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--flyer-white);
   padding: 18px 35px 18px 75px;
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.6;
   clip-path: polygon(30px 0%, 100% 0%, 100% 100%, 30px 100%, 0% 50%);
-  box-shadow: 0 10px 25px var(--flyer-shadow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -754,7 +782,11 @@
 
 .servcl-website-link-container:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 30px var(--flyer-shadow);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(155, 122, 184, 0.95) 0%,
+    rgba(181, 147, 206, 0.95) 100%
+  );
 }
 
 .servcl-globe-icon {
@@ -763,6 +795,7 @@
   font-size: 1.5rem;
   top: 50%;
   transform: translateY(-50%);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .servcl-website-info {
@@ -782,27 +815,34 @@
   font-weight: 800;
   font-size: 1.05rem;
   transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .servcl-website-url:hover {
   color: #E8F4F8;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 15px rgba(232, 244, 248, 0.6);
   transform: translateX(3px);
 }
 
-/* Right Side - Image + Team Section */
+/* Right Side - Image + Team Section - UPDATED with enhanced styling */
 .servcl-business-image-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--flyer-gradient);
+  background: linear-gradient(135deg, 
+    rgba(90, 74, 138, 0.3) 0%,
+    rgba(107, 91, 149, 0.3) 50%,
+    rgba(123, 91, 161, 0.3) 100%
+  );
+  backdrop-filter: blur(10px);
   padding: 60px 40px;
   position: relative;
   clip-path: polygon(100px 0, 100% 0, 100% 100%, 0 100%, 0 180px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Hexagon Image Container */
+/* Hexagon Image Container - UPDATED with enhanced shadow */
 .servcl-hexagon-image-container {
   display: flex;
   align-items: center;
@@ -821,13 +861,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 50px var(--flyer-shadow);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
 }
 
 .servcl-hexagon-image-frame:hover {
   transform: scale(1.02);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
 }
 
 .servcl-business-meeting-image {
@@ -843,36 +883,37 @@
   transform: scale(1.05);
 }
 
-/* ServCl Team Section After Image */
+/* ServCl Team Section After Image - UPDATED with enhanced styling */
 .servcl-team-text-section {
   text-align: center;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 25px 30px;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   max-width: 400px;
 }
 
 .servcl-team-title {
-  color: var(--flyer-primary);
+  color: var(--flyer-white);
   font-size: 1.8rem;
   font-weight: 800;
   margin-bottom: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .servcl-team-description {
-  color: var(--flyer-text-dark);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
-  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* MOBILE AND TABLET RESPONSIVE STYLES */
+/* MOBILE AND TABLET RESPONSIVE STYLES - UPDATED for dark theme */
 
 /* Tablet Styles (992px and below) */
 @media (max-width: 992px) {
@@ -883,6 +924,8 @@
   
   .servcl-services-galaxy {
     padding: 50px 30px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .servcl-services-galaxy::after {
@@ -898,6 +941,8 @@
   .servcl-business-image-section {
     clip-path: none;
     padding: 50px 30px;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .servcl-hexagon-image-frame {
@@ -1024,7 +1069,6 @@
   
   .servcl-team-title {
     font-size: 1.4rem;
-    margin-bottom: 10px;
   }
   
   .servcl-team-description {
@@ -1158,244 +1202,6 @@
   }
 }
 
-/* ===============================
-   WHY CHOOSE DIMENSION
-   =============================== */
-
-.servcl-dimension-portal {
-  padding: calc(var(--spacing-xl) * 3) 0;
-  background: linear-gradient(135deg, 
-    var(--color-white) 0%,
-    rgba(15, 20, 25, 0.02) 25%,
-    var(--color-white) 50%,
-    rgba(127, 199, 217, 0.03) 75%,
-    var(--color-white) 100%
-  );
-  position: relative;
-}
-
-.servcl-portal-container {
-  max-width: var(--bp-large);
-  margin: 0 auto;
-  padding: 0 var(--spacing-sm);
-}
-
-.servcl-portal-header {
-  text-align: center;
-  margin-bottom: calc(var(--spacing-xl) * 2);
-  position: relative;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.servcl-portal-opened .servcl-portal-header {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.servcl-portal-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.2;
-}
-
-.servcl-title-quantum {
-  color: var(--color-dark);
-  position: relative;
-}
-
-.servcl-title-brand-accent {
-  color: var(--color-highlight);
-  position: relative;
-  margin-left: var(--spacing-sm);
-}
-
-.servcl-portal-energy-field {
-  width: 200px;
-  height: 6px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    var(--color-light) 25%,
-    var(--color-highlight) 50%,
-    var(--color-medium) 75%,
-    transparent 100%
-  );
-  margin: 0 auto;
-  border-radius: 3px;
-  transform: scaleX(0);
-  transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
-}
-
-.servcl-portal-opened .servcl-portal-energy-field {
-  transform: scaleX(1);
-}
-
-/* Features Matrix */
-.servcl-features-matrix {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl) 0;
-}
-
-.servcl-feature-crystal {
-  transform: translateY(60px) rotateY(20deg);
-  opacity: 0;
-  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-  transition-delay: var(--crystal-delay);
-}
-
-.servcl-portal-opened .servcl-feature-crystal {
-  transform: translateY(0) rotateY(0deg);
-  opacity: 1;
-}
-
-.servcl-crystal-facet {
-  position: relative;
-  background: var(--color-white);
-  border-radius: 20px;
-  padding: var(--spacing-xl);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  height: 100%;
-}
-
-.servcl-crystal-facet::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(135deg, 
-    var(--feature-accent), 
-    rgba(255, 255, 255, 0.1), 
-    var(--feature-accent)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: subtract;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.servcl-crystal-facet:hover::before {
-  opacity: 1;
-}
-
-.servcl-crystal-facet:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.servcl-crystal-core {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.servcl-feature-icon-nexus {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, var(--feature-accent), rgba(255, 255, 255, 0.1));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--spacing-lg);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.servcl-feature-icon-nexus::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: conic-gradient(from 0deg, transparent, var(--feature-accent), transparent);
-  animation: servcl-nexus-spin 3s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.servcl-crystal-facet:hover .servcl-feature-icon-nexus::before {
-  opacity: 0.3;
-}
-
-.servcl-nexus-symbol {
-  font-size: 1.8rem;
-  color: var(--color-white);
-  position: relative;
-  z-index: 1;
-}
-
-.servcl-crystal-content {
-  flex: 1;
-}
-
-.servcl-feature-title {
-  color: var(--color-black);
-  font-size: 1.4rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-sm);
-  position: relative;
-}
-
-.servcl-feature-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--feature-accent);
-  transition: width 0.3s ease;
-  border-radius: 1px;
-}
-
-.servcl-crystal-facet:hover .servcl-feature-title::after {
-  width: 50px;
-}
-
-.servcl-feature-essence {
-  color: var(--color-black);
-  line-height: 1.6;
-  opacity: 0.8;
-  margin: 0;
-}
-
-.servcl-crystal-glow {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, var(--feature-accent) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  animation: servcl-glow-pulse 4s ease-in-out infinite;
-}
-
-.servcl-crystal-facet:hover .servcl-crystal-glow {
-  opacity: 0.05;
-}
-
-@keyframes servcl-nexus-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes servcl-glow-pulse {
-  0%, 100% { transform: scale(0.8); opacity: 0; }
-  50% { transform: scale(1.2); opacity: 0.05; }
-}
 
 /* ===============================
    RESPONSIVE DESIGN
