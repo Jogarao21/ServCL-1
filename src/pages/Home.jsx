@@ -13,7 +13,12 @@ import SoftwareServices from './SoftwareServices';
 import Contact from './Contact';
 
 // Import the fiber optic arrow image
-import fiberOpticArrow from '../assets/fiber-optic-arrow.png';
+import fiberOpticArrow from '../assets/fiber-optic-arrow1.png';
+
+import websiteDevelopmentIcon from '../assets/WebsiteDevelopment1.png';
+import mortgageProcessingIcon from '../assets/USMortgageProcessing1.png';
+import titleSearchIcon from '../assets/TitleSearch1.png';
+import softwareServicesIcon from '../assets/SoftwareServices1.png';
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -66,7 +71,7 @@ const Home = () => {
       id: 'website-dev',
       title: 'Website Development',
       description: 'Modern, responsive websites built with cutting-edge technologies',
-      icon: '🌐',
+      icon: websiteDevelopmentIcon,
       gradient: 'linear-gradient(135deg, #E8F4F8 0%, #7FC7D9 100%)',
       delay: '0ms'
     },
@@ -74,7 +79,7 @@ const Home = () => {
       id: 'mortgage-processing',
       title: 'US Mortgage Processing',
       description: 'Comprehensive mortgage processing solutions for financial institutions',
-      icon: '🏠',
+      icon: mortgageProcessingIcon,
       gradient: 'linear-gradient(135deg, #7FC7D9 0%, #365486 100%)',
       delay: '200ms'
     },
@@ -82,7 +87,7 @@ const Home = () => {
       id: 'title-search',
       title: 'Title Search',
       description: 'Accurate title searches and property verification services',
-      icon: '🔍',
+      icon: titleSearchIcon,
       gradient: 'linear-gradient(135deg, #365486 0%, #0F1419 100%)',
       delay: '400ms'
     },
@@ -90,7 +95,7 @@ const Home = () => {
       id: 'software-services',
       title: 'Software Services',
       description: 'Custom software development and maintenance solutions',
-      icon: '💻',
+      icon: softwareServicesIcon,
       gradient: 'linear-gradient(135deg, #0F1419 0%, #7D0A0A 100%)',
       delay: '600ms'
     }
@@ -229,51 +234,113 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Constellation */}
-      <section 
-        ref={servicesRef}
-        id="services"
-        className={`servcl-services-constellation ${isVisible.services ? 'servcl-constellation-aligned' : ''}`}
-      >
-        <div className="servcl-constellation-container">
-          <div className="servcl-constellation-header">
-            <h2 className="servcl-constellation-title">
-              <span className="servcl-title-glow">Core</span> 
-              <span className="servcl-title-emphasis">Services</span>
-            </h2>
-            <div className="servcl-constellation-divider"></div>
-          </div>
+{/* Business Services Flyer Section */}
+<section 
+  ref={servicesRef}
+  id="services"
+  className={`servcl-services-constellation ${isVisible.services ? 'servcl-constellation-aligned' : ''}`}
+>
+  <div className="servcl-constellation-container">
+    {/* Left Side - Services List */}
+    <div className="servcl-services-galaxy">
+      <div className="servcl-constellation-header">
+        <div className="servcl-dotted-accent"></div>
+        <h2 className="servcl-constellation-title">
+          <span className="servcl-title-glow">Business</span> 
+          <span className="servcl-title-emphasis">Services</span>
+        </h2>
+      </div>
 
-          <div className="servcl-services-galaxy">
-            {coreServices.map((service, index) => (
-              <div 
-                key={service.id}
-                className="servcl-service-planet"
-                style={{
-                  '--service-delay': service.delay,
-                  '--service-gradient': service.gradient
-                }}
-              >
-                <div className="servcl-planet-atmosphere">
-                  <div className="servcl-planet-core">
-                    <div className="servcl-service-icon">
-                      <span className="servcl-icon-symbol">{service.icon}</span>
-                    </div>
-                    <div className="servcl-service-content">
-                      <h3 className="servcl-service-name">{service.title}</h3>
-                      <p className="servcl-service-description">{service.description}</p>
-                    </div>
+      {/* Service Items with Descriptions Below */}
+      <div className="servcl-services-list">
+        {coreServices.map((service, index) => (
+          <div 
+            key={service.id}
+            className={`servcl-service-item servcl-service-${service.id}`}
+          >
+            <div 
+              className="servcl-service-planet"
+              onMouseEnter={() => {
+                const descArea = document.getElementById(`desc-${service.id}`);
+                if (descArea) {
+                  descArea.classList.add('servcl-description-visible');
+                }
+              }}
+              onMouseLeave={() => {
+                const descArea = document.getElementById(`desc-${service.id}`);
+                if (descArea) {
+                  descArea.classList.remove('servcl-description-visible');
+                }
+              }}
+            >
+              <div className="servcl-planet-atmosphere">
+                <div className="servcl-planet-core">
+                  <div className="servcl-service-icon">
+                      <img 
+    src={service.icon} 
+    alt={`${service.title} Icon`}
+    className="servcl-icon-image"
+  />
                   </div>
-                  <div className="servcl-planet-rings">
-                    <div className="servcl-ring servcl-ring-alpha"></div>
-                    <div className="servcl-ring servcl-ring-beta"></div>
+                  <div className="servcl-service-content">
+                    <span className="servcl-service-name">{service.title}</span>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+            
+            {/* Description Below Each Service */}
+            <div 
+              className="servcl-service-description-below"
+              id={`desc-${service.id}`}
+            >
+              <p className="servcl-description-text-below">
+                {service.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Website Link */}
+      <div className="servcl-website-link-section">
+        <div className="servcl-website-link-container">
+          <span className="servcl-globe-icon">🌐</span>
+          <div className="servcl-website-info">
+            <span className="servcl-website-label">Our Website</span>
+            <a 
+              href="https://www.servcl.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="servcl-website-url"
+            >
+              www.servcl.com
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Right Side - Image + ServCl Team Text */}
+    <div className="servcl-business-image-section">
+      <div className="servcl-hexagon-image-container">
+        <div className="servcl-hexagon-image-frame">
+          <div className="servcl-business-meeting-image"></div>
+        </div>
+      </div>
+      
+      {/* ServCl Team Text After Image */}
+      <div className="servcl-team-text-section">
+        <h3 className="servcl-team-title">ServCl Team</h3>
+        <p className="servcl-team-description">
+          Professional business services delivered by our experienced team of experts.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Why Choose Dimension */}
       <section 
