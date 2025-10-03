@@ -664,10 +664,7 @@
   filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
 
-/* Hide the old emoji symbol styling - ADD THIS NEW RULE */
-.servcl-icon-symbol {
-  display: none;
-}
+
 
 
 .servcl-planet-atmosphere:hover .servcl-icon-symbol {
@@ -1686,7 +1683,4 @@
   filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
 
-/* Hide the old emoji symbol styling */
-.servcl-icon-symbol {
-  display: none;
-}
+
