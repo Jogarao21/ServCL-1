@@ -326,10 +326,7 @@ const Home = () => {
         <div id="why-choose" className='home-section-wrapper'>
           <WhyChoose />
         </div>
-      {/* Website Development Section */}
-      <div id="website-development" className="home-section-wrapper">
-        <WebsiteDevelopment />
-      </div>
+
 
       {/* US Mortgage Processing Section */}
       <div id="us-mortgage-processing" className="home-section-wrapper">
@@ -344,6 +341,10 @@ const Home = () => {
       {/* Software Services Section */}
       <div id="software-services" className="home-section-wrapper">
         <SoftwareServices />
+      </div>
+            {/* Website Development Section */}
+      <div id="website-development" className="home-section-wrapper">
+        <WebsiteDevelopment />
       </div>
 
       {/* Contact Section */}
